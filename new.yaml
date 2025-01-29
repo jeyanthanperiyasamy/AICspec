@@ -1,0 +1,226 @@
+openapi: 3.0.0
+info:
+  title: New Collection
+  version: 1.0.0
+servers:
+  - url: http://{{platformurl}}
+tags:
+  - name: Managed Identities
+    description: >-
+      User objects that are stored in the Advanced Identity Cloud are referred
+      to as managed identities.
+
+
+      You can add, change, and delete managed users by using the platform UI, or
+      over the REST interface by using these endpoints.
+
+
+      All of the calls in this section require administrative access. The access
+      token is provided as a bearer token in the headers of each request.
+
+
+      > Note:
+
+      >
+
+      > Some of the examples in this collection use client-assigned IDs (such as
+      bjensen and scarter) when creating objects because it makes the examples
+      easier to read. 
+
+      > 
+
+      > In the Server assigned IDs section they are created with  IDs such as
+      55ef0a75-f261-47e9-a72b-f5c61c32d339. 
+
+      > 
+
+      >  Generally, immutable server-assigned UUIDs are used in production
+      environments.
+  - name: Managed Identities > Server-assigned ID
+    description: >-
+      In this section, the Advanced Identity Cloud assigns the ID to your
+      identites, ensuring uniqueness.
+  - name: Managed Identities > Client-assigned ID
+paths:
+  /openidm/managed/alpha_user:
+    post:
+      tags:
+        - Managed Identities > Server-assigned ID
+      summary: 'Step 3: [fr:idm:*] Update a Managed Identity'
+      description: >-
+        Update the details, in this case; the telephone number, of a managed
+        identity.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                - operation: replace
+                  field: /telephoneNumber
+                  value: '{{$randomPhoneNumber}}'
+      parameters:
+        - name: Accept-API-Version
+          in: header
+          schema:
+            type: number
+          description: '(Required) '
+          example: resource=1.0
+        - name: _action
+          in: query
+          schema:
+            type: string
+          example: patch
+        - name: _queryFilter
+          in: query
+          schema:
+            type: string
+          example: userName eq "{{managedUsername}}"
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Managed Identities > Server-assigned ID
+      summary: '[fr:idm:*] Query All Managed Identities'
+      parameters:
+        - name: Accept-API-Version
+          in: header
+          schema:
+            type: number
+          description: '(Required) '
+          example: resource=1.0
+        - name: _fields
+          in: query
+          schema:
+            type: string
+          description: >-
+            Optional parameter containing a comma separated list of field
+            references specifying which fields of the targeted JSON resource
+            should be returned.
+          example: userName,givenName,sn,mail,accountStatus
+        - name: _prettyPrint
+          in: query
+          schema:
+            type: boolean
+          description: >-
+            Optional parameter requesting that the returned JSON resource
+            content should be formatted to be more human readable.
+          example: 'true'
+        - name: _queryFilter
+          in: query
+          schema:
+            type: boolean
+          example: 'true'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /openidm/managed/alpha_user/{_id}:
+    delete:
+      tags:
+        - Managed Identities > Client-assigned ID
+      summary: 'Step 4: [fr:idm:*] Delete a Managed Identity'
+      parameters:
+        - name: Accept-API-Version
+          in: header
+          schema:
+            type: number
+          description: '(Required) '
+          example: resource=1.0
+        - name: X-OpenIDM-Username
+          in: header
+          schema:
+            type: string
+          example: '{{adminUsername}}'
+        - name: X-OpenIDM-Password
+          in: header
+          schema:
+            type: string
+          example: '{{adminPassword}}'
+        - name: _id
+          in: path
+          schema:
+            type: string
+          required: true
+          example: '{{managedUserId}}'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - Managed Identities > Client-assigned ID
+      summary: 'Step 1: [fr:idm:*] Create a Managed Identity'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                userName: '{{varUserName}}'
+                sn: '{{varLastName}}'
+                givenName: '{{varFirstName}}'
+                mail: '{{varFirstName}}.{{varLastName}}@postman.example.com'
+                telephoneNumber: '{{$randomPhoneNumber}}'
+                password: '{{$randomPassword}}{{$randomHexColor}}'
+                description: >-
+                  Demo managed identity with client-assigned ID, created by
+                  Advanced Identity Cloud Postman collection.
+      parameters:
+        - name: _id
+          in: path
+          schema:
+            type: string
+          required: true
+          example: '{{managedUserId}}'
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Managed Identities > Client-assigned ID
+      summary: 'Step 2: [fr:idm:*] Read a Managed Identity'
+      parameters:
+        - name: _id
+          in: path
+          schema:
+            type: string
+          required: true
+          example: '{{managedUserId}}'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    patch:
+      tags:
+        - Managed Identities > Client-assigned ID
+      summary: 'Step 3: [fr:idm:*] Update a Managed Identity'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                - operation: replace
+                  field: /telephoneNumber
+                  value: '{{$randomPhoneNumber}}'
+      parameters:
+        - name: _id
+          in: path
+          schema:
+            type: string
+          required: true
+          example: '{{managedUserId}}'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}

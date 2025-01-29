@@ -1,0 +1,299 @@
+---
+openapi: 3.0.3
+info:
+  title: New Collection
+  version: 1.0.0
+  contact: {}
+servers:
+- url: https://openam-recaptcha.forgeblocks.com
+paths:
+  "/openidm/managed/alpha_user":
+    get:
+      tags:
+      - Managed Identities
+      summary: 'Step 2: [fr:idm:*] Read a Managed Identity'
+      description: Obtain the details of a managed identity.
+      operationId: step2FrIdmReadAManagedIdentity
+      parameters:
+      - name: _fields
+        in: query
+        schema:
+          type: string
+          example: ''
+        description: Optional parameter containing a comma separated list of field
+          references specifying which fields of the targeted JSON resource should
+          be returned.
+      - name: _queryFilter
+        in: query
+        schema:
+          type: string
+          example: userName eq "{{managedUsername}}"
+      - name: accept-api-version
+        in: header
+        schema:
+          type: string
+          example: resource=1.0
+        description: "(Required) "
+      - name: _prettyPrint
+        in: query
+        schema:
+          type: string
+          example: 'true'
+        description: Optional parameter requesting that the returned JSON resource
+          content should be formatted to be more human readable.
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearerAuth: []
+    post:
+      tags:
+      - Managed Identities
+      - Server-assigned ID
+      summary: 'Step 1: [fr:idm:*] Create a Managed Identity'
+      description: Create a new managed identity.
+      operationId: step1FrIdmCreateAManagedIdentity
+      parameters:
+      - name: _action
+        in: query
+        schema:
+          type: string
+          example: create
+      - name: _queryFilter
+        in: query
+        schema:
+          type: string
+          example: userName eq "{{managedUsername}}"
+      - name: _fields
+        in: query
+        schema:
+          type: string
+          example: ''
+        description: Optional parameter containing a comma separated list of field
+          references specifying which fields of the targeted JSON resource should
+          be returned.
+      - name: accept-api-version
+        in: header
+        schema:
+          type: string
+          example: resource=1.0
+        description: "(Required) "
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  field:
+                    type: string
+                    example: "/telephoneNumber"
+                  operation:
+                    type: string
+                    example: replace
+                  value:
+                    type: string
+                    example: 290-565-1634
+              example:
+              - field: "/telephoneNumber"
+                operation: replace
+                value: 290-565-1634
+            examples:
+              'Step 1: [fr:idm:*] Create a Managed Identity':
+                value:
+                  description: Demo managed identity with server-assigned ID, created
+                    by Advanced Identity Cloud Postman collection.
+                  givenName: "{{varFirstName}}"
+                  mail: "{{varFirstName}}.{{varLastName}}@postman.example.com"
+                  password: YswqZ9b11Cxuk0f#244c2a
+                  sn: "{{varLastName}}"
+                  telephoneNumber: 290-565-1634
+                  userName: "{{varUserName}}"
+              'Step 3: [fr:idm:*] Update a Managed Identity':
+                value:
+                - field: "/telephoneNumber"
+                  operation: replace
+                  value: 290-565-1634
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearerAuth: []
+  "/openidm/managed/alpha_user/{_id}":
+    get:
+      tags:
+      - Managed Identities
+      - Client-assigned ID
+      summary: 'Step 2: [fr:idm:*] Read a Managed Identity'
+      description: 'Step 2: [fr:idm:*] Read a Managed Identity'
+      operationId: step2FrIdmReadAManagedIdentity1
+      parameters:
+      - name: _fields
+        in: query
+        schema:
+          type: string
+          example: ''
+        description: Optional parameter containing a comma separated list of field
+          references specifying which fields of the targeted JSON resource should
+          be returned.
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearerAuth: []
+    put:
+      tags:
+      - Managed Identities
+      - Client-assigned ID
+      summary: 'Step 1: [fr:idm:*] Create a Managed Identity'
+      description: 'Step 1: [fr:idm:*] Create a Managed Identity'
+      operationId: step1FrIdmCreateAManagedIdentity1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                description:
+                  type: string
+                  example: Demo managed identity with client-assigned ID, created
+                    by Advanced Identity Cloud Postman collection.
+                givenName:
+                  type: string
+                  example: "{{varFirstName}}"
+                mail:
+                  type: string
+                  example: "{{varFirstName}}.{{varLastName}}@postman.example.com"
+                password:
+                  type: string
+                  example: YswqZ9b11Cxuk0f#244c2a
+                sn:
+                  type: string
+                  example: "{{varLastName}}"
+                telephoneNumber:
+                  type: string
+                  example: 290-565-1634
+                userName:
+                  type: string
+                  example: "{{varUserName}}"
+            examples:
+              'Step 1: [fr:idm:*] Create a Managed Identity':
+                value:
+                  description: Demo managed identity with client-assigned ID, created
+                    by Advanced Identity Cloud Postman collection.
+                  givenName: "{{varFirstName}}"
+                  mail: "{{varFirstName}}.{{varLastName}}@postman.example.com"
+                  password: YswqZ9b11Cxuk0f#244c2a
+                  sn: "{{varLastName}}"
+                  telephoneNumber: 290-565-1634
+                  userName: "{{varUserName}}"
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearerAuth: []
+    delete:
+      tags:
+      - Managed Identities
+      - Client-assigned ID
+      summary: 'Step 4: [fr:idm:*] Delete a Managed Identity'
+      description: Delete a managed identity.
+      operationId: step4FrIdmDeleteAManagedIdentity
+      parameters:
+      - name: accept-api-version
+        in: header
+        schema:
+          type: string
+          example: resource=1.0
+        description: "(Required) "
+      - name: x-openidm-username
+        in: header
+        schema:
+          type: string
+          example: "{{adminUsername}}"
+      - name: x-openidm-password
+        in: header
+        schema:
+          type: string
+          example: "{{adminPassword}}"
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearerAuth: []
+    patch:
+      tags:
+      - Managed Identities
+      - Client-assigned ID
+      summary: 'Step 3: [fr:idm:*] Update a Managed Identity'
+      description: 'Step 3: [fr:idm:*] Update a Managed Identity'
+      operationId: step3FrIdmUpdateAManagedIdentity
+      parameters:
+      - name: _fields
+        in: query
+        schema:
+          type: string
+          example: ''
+        description: Optional parameter containing a comma separated list of field
+          references specifying which fields of the targeted JSON resource should
+          be returned.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  field:
+                    type: string
+                    example: "/telephoneNumber"
+                  operation:
+                    type: string
+                    example: replace
+                  value:
+                    type: string
+                    example: 290-565-1634
+              example:
+              - field: "/telephoneNumber"
+                operation: replace
+                value: 290-565-1634
+            examples:
+              'Step 3: [fr:idm:*] Update a Managed Identity':
+                value:
+                - field: "/telephoneNumber"
+                  operation: replace
+                  value: 290-565-1634
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearerAuth: []
+    parameters:
+    - name: _id
+      in: path
+      required: true
+      schema:
+        type: string
+        example: "{{managedUserId}}"
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+tags:
+- name: Managed Identities
+  description: "User objects that are stored in the Advanced Identity Cloud are referred
+    to as managed identities.\n\nYou can add, change, and delete managed users by
+    using the platform UI, or over the REST interface by using these endpoints.\n\nAll
+    of the calls in this section require administrative access. The access token is
+    provided as a bearer token in the headers of each request.\n\n> Note:\n>\n> Some
+    of the examples in this collection use client-assigned IDs (such as bjensen and
+    scarter) when creating objects because it makes the examples easier to read. \n>
+    \n> In the Server assigned IDs section they are created with  IDs such as 55ef0a75-f261-47e9-a72b-f5c61c32d339.
+    \n> \n>  Generally, immutable server-assigned UUIDs are used in production environments."
+- name: Server-assigned ID
+  description: In this section, the Advanced Identity Cloud assigns the ID to your
+    identites, ensuring uniqueness.
+- name: Client-assigned ID

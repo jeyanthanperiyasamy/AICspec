@@ -1,0 +1,3635 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "contact": {},
+    "title": "New Collection",
+    "version": "1.0.0"
+  },
+  "host": "openam-recaptcha.forgeblocks.com",
+  "basePath": "/",
+  "paths": {
+    "/.well-known/assetlinks.json": {
+      "delete": {
+        "consumes": [
+          "text/plain"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "format": "binary",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Well Known",
+          "Assetlinks"
+        ],
+        "description": "Step 3: [fr:idm:*] Delete assetlinks.json",
+        "operationId": "step3FrIdmDeleteAssetlinksJson",
+        "summary": "Step 3: [fr:idm:*] Delete assetlinks.json"
+      },
+      "get": {
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Well Known",
+          "Assetlinks"
+        ],
+        "description": "Step 2: Read assetlinks.json",
+        "operationId": "step2ReadAssetlinksJson",
+        "summary": "Step 2: Read assetlinks.json"
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "example": [
+                {
+                  "relation": [
+                    "delegate_permission/common.handle_all_urls",
+                    "delegate_permission/common.get_login_creds"
+                  ],
+                  "target": {
+                    "namespace": "web",
+                    "site": "https://id.mycompany.com"
+                  }
+                }
+              ],
+              "items": {
+                "properties": {
+                  "relation": {
+                    "example": [
+                      "delegate_permission/common.handle_all_urls",
+                      "delegate_permission/common.get_login_creds"
+                    ],
+                    "items": {
+                      "example": "delegate_permission/common.handle_all_urls",
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "target": {
+                    "properties": {
+                      "namespace": {
+                        "example": "web",
+                        "type": "string"
+                      },
+                      "site": {
+                        "example": "https://id.mycompany.com",
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Well Known",
+          "Assetlinks"
+        ],
+        "description": "Step 1: [fr:idm:*] Create or update assetlinks.json",
+        "operationId": "step1FrIdmCreateOrUpdateAssetlinksJson",
+        "summary": "Step 1: [fr:idm:*] Create or update assetlinks.json"
+      }
+    },
+    "/json/{realm}/authenticate": {
+      "parameters": [
+        {
+          "in": "path",
+          "name": "realm",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "authIndexType",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "authIndexValue",
+            "type": "string"
+          },
+          {
+            "description": "Specifies the version of the `/json/authenticate` endpoint to use.",
+            "in": "header",
+            "name": "Accept-API-Version",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "properties": {
+                "authId": {
+                  "example": "",
+                  "type": "string"
+                },
+                "callbacks": {
+                  "example": [
+                    {
+                      "_id": 0,
+                      "input": [
+                        {
+                          "name": "IDToken1",
+                          "value": ""
+                        }
+                      ],
+                      "output": [
+                        {
+                          "name": "prompt",
+                          "value": "User Name"
+                        }
+                      ],
+                      "type": "NameCallback"
+                    },
+                    {
+                      "_id": 1,
+                      "input": [
+                        {
+                          "name": "IDToken2",
+                          "value": ""
+                        }
+                      ],
+                      "output": [
+                        {
+                          "name": "prompt",
+                          "value": "Password"
+                        }
+                      ],
+                      "type": "PasswordCallback"
+                    }
+                  ],
+                  "items": {
+                    "properties": {
+                      "_id": {
+                        "example": 0,
+                        "type": "number"
+                      },
+                      "input": {
+                        "example": [
+                          {
+                            "name": "IDToken1",
+                            "value": ""
+                          }
+                        ],
+                        "items": {
+                          "properties": {
+                            "name": {
+                              "example": "IDToken1",
+                              "type": "string"
+                            },
+                            "value": {
+                              "example": "",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "type": "array"
+                      },
+                      "output": {
+                        "example": [
+                          {
+                            "name": "prompt",
+                            "value": "User Name"
+                          }
+                        ],
+                        "items": {
+                          "properties": {
+                            "name": {
+                              "example": "prompt",
+                              "type": "string"
+                            },
+                            "value": {
+                              "example": "User Name",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "type": "array"
+                      },
+                      "type": {
+                        "example": "NameCallback",
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Session Management"
+        ],
+        "description": "To respond to a callback, send back the whole JSON object with the missing `input` values filled.\n\nThis request shows how to respond to the NameCallback and PasswordCallback callbacks.\n\nOverride the values in this response to the callbacks by using the `amDemoUsername` and `amDemoPassword` Postman variables.",
+        "operationId": "step2AuthenticateAsPostmanDemoUser1",
+        "summary": "Step 2: Authenticate as Postman demo user"
+      }
+    },
+    "/json/{realm}/realm-config/agents/OAuth2Client/{postmanPublicClientId}": {
+      "parameters": [
+        {
+          "in": "path",
+          "name": "realm",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "in": "path",
+          "name": "postmanPublicClientId",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "description": "Custom header.",
+            "in": "header",
+            "name": "X-Requested-With",
+            "type": "string"
+          },
+          {
+            "description": "SSO token of an administrator. ",
+            "in": "header",
+            "name": "",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "properties": {
+                "advancedOAuth2ClientConfig": {
+                  "properties": {
+                    "clientUri": {
+                      "properties": {
+                        "inherited": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": [
+                            "Unknown Type: any"
+                          ],
+                          "items": {
+                            "example": "Unknown Type: any",
+                            "type": "string"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "contacts": {
+                      "properties": {
+                        "inherited": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": [
+                            "Unknown Type: any"
+                          ],
+                          "items": {
+                            "example": "Unknown Type: any",
+                            "type": "string"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "descriptions": {
+                      "properties": {
+                        "inherited": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": [
+                            "Unknown Type: any"
+                          ],
+                          "items": {
+                            "example": "Unknown Type: any",
+                            "type": "string"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "grantTypes": {
+                      "properties": {
+                        "inherited": {
+                          "example": false,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": [
+                            "authorization_code",
+                            "implicit",
+                            "password",
+                            "client_credentials",
+                            "refresh_token",
+                            "urn:ietf:params:oauth:grant-type:uma-ticket",
+                            "urn:ietf:params:oauth:grant-type:device_code",
+                            "urn:ietf:params:oauth:grant-type:saml2-bearer",
+                            "urn:ietf:params:oauth:grant-type:jwt-bearer",
+                            "urn:openid:params:grant-type:ciba"
+                          ],
+                          "items": {
+                            "example": "authorization_code",
+                            "type": "string"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "isConsentImplied": {
+                      "properties": {
+                        "inherited": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": true,
+                          "type": "boolean"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "logoUri": {
+                      "properties": {
+                        "inherited": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": [
+                            "Unknown Type: any"
+                          ],
+                          "items": {
+                            "example": "Unknown Type: any",
+                            "type": "string"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "mixUpMitigation": {
+                      "properties": {
+                        "inherited": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": true,
+                          "type": "boolean"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "name": {
+                      "properties": {
+                        "inherited": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": [
+                            "Unknown Type: any"
+                          ],
+                          "items": {
+                            "example": "Unknown Type: any",
+                            "type": "string"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "policyUri": {
+                      "properties": {
+                        "inherited": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": [
+                            "Unknown Type: any"
+                          ],
+                          "items": {
+                            "example": "Unknown Type: any",
+                            "type": "string"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "requestUris": {
+                      "properties": {
+                        "inherited": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": [
+                            "Unknown Type: any"
+                          ],
+                          "items": {
+                            "example": "Unknown Type: any",
+                            "type": "string"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "responseTypes": {
+                      "example": [
+                        "code",
+                        "token"
+                      ],
+                      "items": {
+                        "example": "code",
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "sectorIdentifierUri": {
+                      "properties": {
+                        "inherited": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": "string",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "subjectType": {
+                      "properties": {
+                        "inherited": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": "string",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "tokenEndpointAuthMethod": {
+                      "properties": {
+                        "inherited": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": "string",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "updateAccessToken": {
+                      "properties": {
+                        "inherited": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": "string",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                },
+                "coreOAuth2ClientConfig": {
+                  "properties": {
+                    "accessTokenLifetime": {
+                      "properties": {
+                        "inherited": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": 0,
+                          "type": "number"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "agentgroup": {
+                      "example": "",
+                      "type": "string"
+                    },
+                    "authorizationCodeLifetime": {
+                      "properties": {
+                        "inherited": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": 0,
+                          "type": "number"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "clientName": {
+                      "properties": {
+                        "inherited": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": [
+                            "Unknown Type: any"
+                          ],
+                          "items": {
+                            "example": "Unknown Type: any",
+                            "type": "string"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "clientType": {
+                      "properties": {
+                        "inherited": {
+                          "example": false,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": "Public",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "defaultScopes": {
+                      "properties": {
+                        "inherited": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": [
+                            "Unknown Type: any"
+                          ],
+                          "items": {
+                            "example": "Unknown Type: any",
+                            "type": "string"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "loopbackInterfaceRedirection": {
+                      "properties": {
+                        "inherited": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": true,
+                          "type": "boolean"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "redirectionUris": {
+                      "properties": {
+                        "inherited": {
+                          "example": false,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": [
+                            "https://httpbin.org/anything"
+                          ],
+                          "items": {
+                            "example": "https://httpbin.org/anything",
+                            "type": "string"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "refreshTokenLifetime": {
+                      "properties": {
+                        "inherited": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": 0,
+                          "type": "number"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "scopes": {
+                      "properties": {
+                        "inherited": {
+                          "example": false,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": [
+                            "write",
+                            "read",
+                            "share",
+                            "print",
+                            "copy",
+                            "delete",
+                            "manage",
+                            "edit"
+                          ],
+                          "items": {
+                            "example": "write",
+                            "type": "string"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "status": {
+                      "properties": {
+                        "inherited": {
+                          "example": false,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": "Active",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "userpassword": {
+                      "example": "",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "coreOpenIDClientConfig": {
+                  "properties": {
+                    "claims": {
+                      "properties": {
+                        "inherited": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": [
+                            "Unknown Type: any"
+                          ],
+                          "items": {
+                            "example": "Unknown Type: any",
+                            "type": "string"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "clientSessionUri": {
+                      "properties": {
+                        "inherited": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": "string",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "defaultAcrValues": {
+                      "properties": {
+                        "inherited": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": [
+                            "Unknown Type: any"
+                          ],
+                          "items": {
+                            "example": "Unknown Type: any",
+                            "type": "string"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "defaultMaxAge": {
+                      "properties": {
+                        "inherited": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": 0,
+                          "type": "number"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "defaultMaxAgeEnabled": {
+                      "properties": {
+                        "inherited": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": true,
+                          "type": "boolean"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "jwtTokenLifetime": {
+                      "properties": {
+                        "inherited": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": 0,
+                          "type": "number"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "postLogoutRedirectUri": {
+                      "properties": {
+                        "inherited": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": [
+                            "Unknown Type: any"
+                          ],
+                          "items": {
+                            "example": "Unknown Type: any",
+                            "type": "string"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                },
+                "coreUmaClientConfig": {
+                  "properties": {
+                    "claimsRedirectionUris": {
+                      "properties": {
+                        "inherited": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": [
+                            "Unknown Type: any"
+                          ],
+                          "items": {
+                            "example": "Unknown Type: any",
+                            "type": "string"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                },
+                "signEncOAuth2ClientConfig": {
+                  "properties": {
+                    "clientJwtPublicKey": {
+                      "properties": {
+                        "inherited": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": "string",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "idTokenEncryptionAlgorithm": {
+                      "properties": {
+                        "inherited": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": "string",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "idTokenEncryptionEnabled": {
+                      "properties": {
+                        "inherited": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": true,
+                          "type": "boolean"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "idTokenEncryptionMethod": {
+                      "properties": {
+                        "inherited": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": "string",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "idTokenPublicEncryptionKey": {
+                      "properties": {
+                        "inherited": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": "string",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "idTokenSignedResponseAlg": {
+                      "properties": {
+                        "inherited": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": "string",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "jwkSet": {
+                      "properties": {
+                        "inherited": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": "string",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "jwkStoreCacheMissCacheTime": {
+                      "properties": {
+                        "inherited": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": 0,
+                          "type": "number"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "jwksCacheTimeout": {
+                      "properties": {
+                        "inherited": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": 0,
+                          "type": "number"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "jwksUri": {
+                      "properties": {
+                        "inherited": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": "string",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "mTLSCertificateBoundAccessTokens": {
+                      "properties": {
+                        "inherited": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": true,
+                          "type": "boolean"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "mTLSSubjectDN": {
+                      "properties": {
+                        "inherited": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": "string",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "mTLSTrustedCert": {
+                      "properties": {
+                        "inherited": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": "string",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "publicKeyLocation": {
+                      "properties": {
+                        "inherited": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": "string",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "requestParameterEncryptedAlg": {
+                      "properties": {
+                        "inherited": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": "string",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "requestParameterEncryptedEncryptionAlgorithm": {
+                      "properties": {
+                        "inherited": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": "string",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "requestParameterSignedAlg": {
+                      "properties": {
+                        "inherited": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": "string",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "tokenEndpointAuthSigningAlgorithm": {
+                      "properties": {
+                        "inherited": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": "string",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "tokenIntrospectionEncryptedResponseAlg": {
+                      "properties": {
+                        "inherited": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": "string",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "tokenIntrospectionEncryptedResponseEncryptionAlgorithm": {
+                      "properties": {
+                        "inherited": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": "string",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "tokenIntrospectionResponseFormat": {
+                      "properties": {
+                        "inherited": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": "string",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "tokenIntrospectionSignedResponseAlg": {
+                      "properties": {
+                        "inherited": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": "string",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "userinfoEncryptedResponseAlg": {
+                      "properties": {
+                        "inherited": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": "string",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "userinfoEncryptedResponseEncryptionAlgorithm": {
+                      "properties": {
+                        "inherited": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": "string",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "userinfoResponseFormat": {
+                      "properties": {
+                        "inherited": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": "string",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "userinfoSignedResponseAlg": {
+                      "properties": {
+                        "inherited": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "value": {
+                          "example": "string",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Prerequisites"
+        ],
+        "description": "Register a demonstration public client, used in the OAuth 2.0 flows section of the collection.",
+        "operationId": "step3FrAmCreateAPublicOauth20Client",
+        "summary": "Step 3: [fr:am:*] Create a Public OAuth 2.0 Client"
+      }
+    },
+    "/json/{realm}/sessions": {
+      "parameters": [
+        {
+          "in": "path",
+          "name": "realm",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "post": {
+        "consumes": [
+          "text/plain"
+        ],
+        "parameters": [
+          {
+            "description": "Optional parameter containing a comma separated list of field references specifying which fields of the targeted JSON resource should be returned.",
+            "in": "query",
+            "name": "_fields",
+            "type": "string"
+          },
+          {
+            "description": "Optional parameter requesting that the returned JSON resource content should be formatted to be more human readable.",
+            "in": "query",
+            "name": "_prettyPrint",
+            "type": "string"
+          },
+          {
+            "description": "(Required) ",
+            "in": "query",
+            "name": "_action",
+            "type": "string"
+          },
+          {
+            "description": "(Required) ",
+            "in": "header",
+            "name": "Accept-API-Version",
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "format": "binary",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Session Management"
+        ],
+        "description": "It does logout from OpenAM",
+        "operationId": "step8UserLogoutSession",
+        "summary": "Step 8. [User] Logout session"
+      }
+    },
+    "/json/{realm}/sessions/": {
+      "parameters": [
+        {
+          "in": "path",
+          "name": "realm",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "post": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "description": "Specifies a request to log out, or invalidate, a session.",
+            "in": "query",
+            "name": "_action",
+            "type": "string"
+          },
+          {
+            "description": "Specifies the session token to log out. To terminate a different session, specify its session token in the `tokenId` parameter of the POST body.",
+            "in": "header",
+            "name": "",
+            "type": "string"
+          },
+          {
+            "description": "Specifies the version of the /json/sessions endpoint to use.",
+            "in": "header",
+            "name": "Accept-API-Version",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "headers": {
+              "Cache-Control": {
+                "type": "string"
+              },
+              "Content-API-Version": {
+                "type": "string"
+              },
+              "Content-Length": {
+                "type": "string"
+              },
+              "Date": {
+                "type": "string"
+              },
+              "Expires": {
+                "type": "string"
+              },
+              "Pragma": {
+                "type": "string"
+              },
+              "Set-Cookie": {
+                "type": "string"
+              },
+              "X-Content-Type-Options": {
+                "type": "string"
+              },
+              "X-Frame-Options": {
+                "type": "string"
+              }
+            },
+            "schema": {
+              "properties": {
+                "result": {
+                  "example": "Successfully logged out",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "tags": [
+          "Intelligent Access"
+        ],
+        "description": "To invalidate, or log out a session, perform an HTTP POST to the `/json/sessions/` endpoint using the `logout` action. \n\nThe endpoint invalidates the session identified by the provided session token.\n\n> Tip:\n>\n> To invalidate a different session token, include it in the POST body as the value of the `tokenId` parameter.",
+        "operationId": "step4UserLogout",
+        "summary": "Step 4: [User] Logout"
+      }
+    },
+    "/json/{realm}/users/{demoUserId}/oauth2/applications": {
+      "parameters": [
+        {
+          "in": "path",
+          "name": "realm",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "in": "path",
+          "name": "demoUserId",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "get": {
+        "parameters": [
+          {
+            "description": "Optional parameter containing a comma separated list of field references specifying which fields of the targeted JSON resource should be returned.",
+            "in": "query",
+            "name": "_fields",
+            "type": "string"
+          },
+          {
+            "description": "Optional parameter requesting that the returned JSON resource content should be formatted to be more human readable.",
+            "in": "query",
+            "name": "_prettyPrint",
+            "type": "string"
+          },
+          {
+            "description": "(Required) ",
+            "in": "query",
+            "name": "_queryFilter",
+            "type": "string"
+          },
+          {
+            "description": "(Required) ",
+            "in": "header",
+            "name": "Accept-API-Version",
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Identity Profiles",
+          "Authorized OAuth 2.0 Clients"
+        ],
+        "description": "Get a list of the applications that have been granted OAuth 2.0 access. Only `_queryFilter=true` is supported.",
+        "operationId": "step1UserQueryAuthorizedOauth20Clients",
+        "summary": "Step 1: [User] Query Authorized OAuth 2.0 Clients"
+      }
+    },
+    "/json/{realm}/users/{user_ID}/oauth2/applications/{oauth2App_ID}": {
+      "parameters": [
+        {
+          "in": "path",
+          "name": "realm",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "in": "path",
+          "name": "user_ID",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "in": "path",
+          "name": "oauth2App_ID",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "delete": {
+        "produces": [
+          "text/plain"
+        ],
+        "parameters": [
+          {
+            "description": "Optional parameter containing a comma separated list of field references specifying which fields of the targeted JSON resource should be returned.",
+            "in": "query",
+            "name": "_fields",
+            "type": "string"
+          },
+          {
+            "description": "Optional parameter requesting that the returned JSON resource content should be formatted to be more human readable.",
+            "in": "query",
+            "name": "_prettyPrint",
+            "type": "string"
+          },
+          {
+            "description": "(Required) ",
+            "in": "header",
+            "name": "Accept-API-Version",
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "tags": [
+          "Identity Profiles",
+          "Authorized OAuth 2.0 Clients"
+        ],
+        "description": "Delete the tokens for the specified client ID.",
+        "operationId": "step2UserDeleteAuthorizedOauth20Client",
+        "summary": "Step 2: [User] Delete Authorized OAuth 2.0 Client"
+      }
+    },
+    "/json/{realm}/users/{user}/devices/2fa/oath": {
+      "parameters": [
+        {
+          "in": "path",
+          "name": "realm",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "description": "(Required) The identifier for the user for which the request is regarding.",
+          "in": "path",
+          "name": "user",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "get": {
+        "parameters": [
+          {
+            "description": "Optional parameter containing a comma separated list of field references specifying which fields of the targeted JSON resource should be returned.",
+            "in": "query",
+            "name": "_fields",
+            "type": "string"
+          },
+          {
+            "description": "Optional parameter requesting that the returned JSON resource content should be formatted to be more human readable.",
+            "in": "query",
+            "name": "_prettyPrint",
+            "type": "string"
+          },
+          {
+            "description": "(Required) ",
+            "in": "query",
+            "name": "_queryFilter",
+            "type": "string"
+          },
+          {
+            "description": "(Required) ",
+            "in": "header",
+            "name": "Accept-API-Version",
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Identity Profiles",
+          "Devices",
+          "OATH"
+        ],
+        "description": "Query the user's device profile",
+        "operationId": "step1UserQueryOathDevices",
+        "summary": "Step 1: [User] Query OATH devices"
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "description": "Optional parameter containing a comma separated list of field references specifying which fields of the targeted JSON resource should be returned.",
+            "in": "query",
+            "name": "_fields",
+            "type": "string"
+          },
+          {
+            "description": "(Required) ",
+            "in": "query",
+            "name": "_action",
+            "type": "string"
+          },
+          {
+            "description": "(Required) ",
+            "in": "header",
+            "name": "Accept-API-Version",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "properties": {},
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Identity Profiles",
+          "Devices",
+          "OATH"
+        ],
+        "description": "Sets the user's 'skippable' selection of Authenticator OATH module to default (NOT_SET) and deletes their profiles attribute",
+        "operationId": "step4FrAmDeleteOathDevice",
+        "summary": "Step 4: [fr:am:*] Delete OATH device"
+      }
+    },
+    "/json/{realm}/users/{user}/devices/2fa/push": {
+      "parameters": [
+        {
+          "in": "path",
+          "name": "realm",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "description": "(Required) The identifier for the user for which the request is regarding.",
+          "in": "path",
+          "name": "user",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "get": {
+        "parameters": [
+          {
+            "description": "Optional parameter containing a comma separated list of field references specifying which fields of the targeted JSON resource should be returned.",
+            "in": "query",
+            "name": "_fields",
+            "type": "string"
+          },
+          {
+            "description": "Optional parameter requesting that the returned JSON resource content should be formatted to be more human readable.",
+            "in": "query",
+            "name": "_prettyPrint",
+            "type": "string"
+          },
+          {
+            "description": "(Required) ",
+            "in": "query",
+            "name": "_queryFilter",
+            "type": "string"
+          },
+          {
+            "description": "(Required) ",
+            "in": "header",
+            "name": "Accept-API-Version",
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Identity Profiles",
+          "Devices",
+          "Push"
+        ],
+        "description": "Query the user's device profile",
+        "operationId": "step1UserQueryPushDevices",
+        "summary": "Step 1: [User] Query Push devices"
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "description": "Optional parameter containing a comma separated list of field references specifying which fields of the targeted JSON resource should be returned.",
+            "in": "query",
+            "name": "_fields",
+            "type": "string"
+          },
+          {
+            "description": "Optional parameter requesting that the returned JSON resource content should be formatted to be more human readable.",
+            "in": "query",
+            "name": "_prettyPrint",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "_action",
+            "type": "string"
+          },
+          {
+            "description": "(Required) ",
+            "in": "header",
+            "name": "Accept-API-Version",
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "properties": {},
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Identity Profiles",
+          "Devices",
+          "Push"
+        ],
+        "description": "Sets the user's 'skippable' selection of Authenticator Push module to default (NOT_SET) and deletes their profile's attribute",
+        "operationId": "step4FrAmDeletePushDevice",
+        "summary": "Step 4: [fr:am:*] Delete Push device"
+      }
+    },
+    "/json/{realm}/users/{user}/devices/2fa/webauthn": {
+      "parameters": [
+        {
+          "in": "path",
+          "name": "realm",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "description": "(Required) The identifier for the user for which the request is regarding.",
+          "in": "path",
+          "name": "user",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "get": {
+        "parameters": [
+          {
+            "description": "Optional parameter containing a comma separated list of field references specifying which fields of the targeted JSON resource should be returned.",
+            "in": "query",
+            "name": "_fields",
+            "type": "string"
+          },
+          {
+            "description": "Optional parameter requesting that the returned JSON resource content should be formatted to be more human readable.",
+            "in": "query",
+            "name": "_prettyPrint",
+            "type": "string"
+          },
+          {
+            "description": "(Required) ",
+            "in": "query",
+            "name": "_queryFilter",
+            "type": "string"
+          },
+          {
+            "description": "(Required) ",
+            "in": "header",
+            "name": "Accept-API-Version",
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Identity Profiles",
+          "Devices",
+          "WebAuthn"
+        ],
+        "description": "Query the user's WebAuthn devices",
+        "operationId": "step1UserQueryWebauthnDevices",
+        "summary": "Step 1: [User] Query WebAuthn devices"
+      }
+    },
+    "/json/{realm}/users/{user}/devices/2fa/webauthn/{webAuthnDeviceId}": {
+      "parameters": [
+        {
+          "in": "path",
+          "name": "realm",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "description": "(Required) The identifier for the user for which the request is regarding.",
+          "in": "path",
+          "name": "user",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "in": "path",
+          "name": "webAuthnDeviceId",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "delete": {
+        "parameters": [
+          {
+            "description": "Optional parameter containing a comma separated list of field references specifying which fields of the targeted JSON resource should be returned.",
+            "in": "query",
+            "name": "_fields",
+            "type": "string"
+          },
+          {
+            "description": "Optional parameter requesting that the returned JSON resource content should be formatted to be more human readable.",
+            "in": "query",
+            "name": "_prettyPrint",
+            "type": "string"
+          },
+          {
+            "description": "(Required) ",
+            "in": "header",
+            "name": "Accept-API-Version",
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Identity Profiles",
+          "Devices",
+          "WebAuthn"
+        ],
+        "description": "Delete WebAuthn user device",
+        "operationId": "step3FrAmDeleteWebauthnDevice",
+        "summary": "Step 3: [fr:am:*] Delete WebAuthn device"
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "description": "Optional parameter containing a comma separated list of field references specifying which fields of the targeted JSON resource should be returned.",
+            "in": "query",
+            "name": "_fields",
+            "type": "string"
+          },
+          {
+            "description": "Optional parameter requesting that the returned JSON resource content should be formatted to be more human readable.",
+            "in": "query",
+            "name": "_prettyPrint",
+            "type": "string"
+          },
+          {
+            "description": "(Required) ",
+            "in": "header",
+            "name": "Accept-API-Version",
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "",
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "If-Match",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "properties": {
+                "deviceName": {
+                  "example": "'s WebAuthn Device",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Identity Profiles",
+          "Devices",
+          "WebAuthn"
+        ],
+        "description": "Update an existing WebAuthn user device",
+        "operationId": "step2FrAmUpdateWebauthnDeviceName",
+        "summary": "Step 2: [fr:am:*] Update WebAuthn device name"
+      }
+    },
+    "/json/{realm}/users/{user}/devices/profile": {
+      "parameters": [
+        {
+          "in": "path",
+          "name": "realm",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "in": "path",
+          "name": "user",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "get": {
+        "parameters": [
+          {
+            "description": "Optional parameter containing a comma separated list of field references specifying which fields of the targeted JSON resource should be returned.",
+            "in": "query",
+            "name": "_fields",
+            "type": "string"
+          },
+          {
+            "description": "Optional parameter requesting that the returned JSON resource content should be formatted to be more human readable.",
+            "in": "query",
+            "name": "_prettyPrint",
+            "type": "string"
+          },
+          {
+            "description": "(Required) ",
+            "in": "query",
+            "name": "_queryFilter",
+            "type": "string"
+          },
+          {
+            "description": "(Required) ",
+            "in": "header",
+            "name": "Accept-API-Version",
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Identity Profiles",
+          "Devices",
+          "Trusted Device Profiles"
+        ],
+        "description": "Query the user devices",
+        "operationId": "step1UserQueryTrustedDeviceProfiles",
+        "summary": "Step 1: [User] Query Trusted Device Profiles"
+      }
+    },
+    "/json/{realm}/users/{user}/devices/profile/{deviceProfileId}": {
+      "parameters": [
+        {
+          "in": "path",
+          "name": "realm",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "in": "path",
+          "name": "user",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "in": "path",
+          "name": "deviceProfileId",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "delete": {
+        "parameters": [
+          {
+            "description": "Optional parameter containing a comma separated list of field references specifying which fields of the targeted JSON resource should be returned.",
+            "in": "query",
+            "name": "_fields",
+            "type": "string"
+          },
+          {
+            "description": "Optional parameter requesting that the returned JSON resource content should be formatted to be more human readable.",
+            "in": "query",
+            "name": "_prettyPrint",
+            "type": "string"
+          },
+          {
+            "description": "(Required) ",
+            "in": "header",
+            "name": "Accept-API-Version",
+            "type": "string"
+          },
+          {
+            "description": "(Required) ",
+            "in": "header",
+            "name": "If-Match",
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Identity Profiles",
+          "Devices",
+          "Trusted Device Profiles"
+        ],
+        "description": "Delete user device",
+        "operationId": "step3FrAmDeleteTrustedDeviceProfile",
+        "summary": "Step 3: [fr:am:*] Delete Trusted Device Profile"
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "description": "Optional parameter containing a comma separated list of field references specifying which fields of the targeted JSON resource should be returned.",
+            "in": "query",
+            "name": "_fields",
+            "type": "string"
+          },
+          {
+            "description": "Optional parameter requesting that the returned JSON resource content should be formatted to be more human readable.",
+            "in": "query",
+            "name": "_prettyPrint",
+            "type": "string"
+          },
+          {
+            "description": "(Required) ",
+            "in": "header",
+            "name": "Accept-API-Version",
+            "type": "string"
+          },
+          {
+            "description": "(Required) ",
+            "in": "header",
+            "name": "If-Match",
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "properties": {
+                "alias": {
+                  "example": "'s Device",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Identity Profiles",
+          "Devices",
+          "Trusted Device Profiles"
+        ],
+        "description": "Update an existing user device alias",
+        "operationId": "step2UserUpdateTrustedDeviceProfile",
+        "summary": "Step 2: [User] Update Trusted Device Profile"
+      }
+    },
+    "/managed/alpha_user": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "_action",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "properties": {
+                "givenName": {
+                  "example": "Postman",
+                  "type": "string"
+                },
+                "mail": {
+                  "example": "",
+                  "type": "string"
+                },
+                "password": {
+                  "example": "",
+                  "type": "string"
+                },
+                "sn": {
+                  "example": "Demo-User",
+                  "type": "string"
+                },
+                "telephoneNumber": {
+                  "example": "",
+                  "type": "string"
+                },
+                "userName": {
+                  "example": "",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Prerequisites"
+        ],
+        "description": "Create a demonstration `alpha_user` in the Alpha realm. A number of requests in the Postman Collection require this user to be present, for example the *Intelligent Access* section.",
+        "operationId": "step4FrIdmCreateADemoManagedIdentityInTheAlphaRealm",
+        "summary": "Step 4: [fr:idm:*] Create a Demo Managed Identity in the Alpha realm"
+      }
+    },
+    "/monitoring/health": {
+      "get": {
+        "produces": [
+          "text/plain"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Prometheus metrics for all AM pods"
+          }
+        },
+        "tags": [
+          "Auditing/Monitoring",
+          "Health"
+        ],
+        "description": "Is the Advanced Identity Cloud \"alive\"?",
+        "operationId": "checkHealth",
+        "summary": "Check Health"
+      }
+    },
+    "/monitoring/logs": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "source",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "transactionId",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "_pageSize",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "_prettyPrint",
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "x-api-key",
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "x-api-secret",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of log events",
+            "schema": {
+              "properties": {
+                "pagedResultsCookie": {
+                  "example": "<string>",
+                  "type": "string"
+                },
+                "remainingPagedResults": {
+                  "example": "<integer>",
+                  "type": "string"
+                },
+                "result": {
+                  "example": [
+                    {
+                      "payload": "<object>",
+                      "timestamp": "<dateTime>",
+                      "type": "<string>"
+                    },
+                    {
+                      "payload": "<object>",
+                      "timestamp": "<dateTime>",
+                      "type": "<string>"
+                    }
+                  ],
+                  "items": {
+                    "properties": {
+                      "payload": {
+                        "example": "<object>",
+                        "type": "string"
+                      },
+                      "timestamp": {
+                        "example": "<dateTime>",
+                        "type": "string"
+                      },
+                      "type": {
+                        "example": "<string>",
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                },
+                "resultCount": {
+                  "example": "<integer>",
+                  "type": "string"
+                },
+                "totalPagedResults": {
+                  "example": "<integer>",
+                  "type": "string"
+                },
+                "totalPagedResultsPolicy": {
+                  "example": "<string>",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "tags": [
+          "Auditing/Monitoring",
+          "Auditing"
+        ],
+        "description": "Get log events",
+        "operationId": "step2ApiKeysGetAuditLogsForATransactionId",
+        "summary": "Step 2: [API Keys] Get Audit Logs for a Transaction ID"
+      }
+    },
+    "/monitoring/logs/sources": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-api-key",
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "x-api-secret",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of log sources",
+            "schema": {
+              "properties": {
+                "pagedResultsCookie": {
+                  "example": "<string>",
+                  "type": "string"
+                },
+                "remainingPagedResults": {
+                  "example": "<integer>",
+                  "type": "string"
+                },
+                "result": {
+                  "example": [
+                    "<string>",
+                    "<string>"
+                  ],
+                  "items": {
+                    "example": "<string>",
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "resultCount": {
+                  "example": "<integer>",
+                  "type": "string"
+                },
+                "totalPagedResults": {
+                  "example": "<integer>",
+                  "type": "string"
+                },
+                "totalPagedResultsPolicy": {
+                  "example": "<string>",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "tags": [
+          "Auditing/Monitoring",
+          "Auditing"
+        ],
+        "description": "Get log sources",
+        "operationId": "step1ApiKeysGetAuditLogSources",
+        "summary": "Step 1: [API Keys] Get Audit Log Sources"
+      }
+    },
+    "/monitoring/logs/tail": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "source",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "_pagedResultsCookie",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "_prettyPrint",
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "x-api-key",
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "x-api-secret",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of log events",
+            "schema": {
+              "properties": {
+                "pagedResultsCookie": {
+                  "example": "<string>",
+                  "type": "string"
+                },
+                "remainingPagedResults": {
+                  "example": "<integer>",
+                  "type": "string"
+                },
+                "result": {
+                  "example": [
+                    {
+                      "payload": "<object>",
+                      "timestamp": "<dateTime>",
+                      "type": "<string>"
+                    },
+                    {
+                      "payload": "<object>",
+                      "timestamp": "<dateTime>",
+                      "type": "<string>"
+                    }
+                  ],
+                  "items": {
+                    "properties": {
+                      "payload": {
+                        "example": "<object>",
+                        "type": "string"
+                      },
+                      "timestamp": {
+                        "example": "<dateTime>",
+                        "type": "string"
+                      },
+                      "type": {
+                        "example": "<string>",
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                },
+                "resultCount": {
+                  "example": "<integer>",
+                  "type": "string"
+                },
+                "totalPagedResults": {
+                  "example": "<integer>",
+                  "type": "string"
+                },
+                "totalPagedResultsPolicy": {
+                  "example": "<string>",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "tags": [
+          "Auditing/Monitoring",
+          "Auditing"
+        ],
+        "description": "Tail log events",
+        "operationId": "step4ApiKeysTailTheAuditLogsForASourceSinceLastRequest",
+        "summary": "Step 4: [API Keys] Tail the Audit Logs for a Source Since Last Request"
+      }
+    },
+    "/monitoring/prometheus/am": {
+      "get": {
+        "produces": [
+          "text/plain"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-api-key",
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "x-api-secret",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Prometheus metrics for all AM pods"
+          }
+        },
+        "tags": [
+          "Auditing/Monitoring",
+          "Monitoring"
+        ],
+        "description": "AM prometheus metrics",
+        "operationId": "apiKeysGetPrometheusMetricsAm",
+        "summary": "[API Keys] Get Prometheus Metrics (AM)"
+      }
+    },
+    "/monitoring/prometheus/idm": {
+      "get": {
+        "produces": [
+          "text/plain"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-api-key",
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "x-api-secret",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Prometheus metrics for all AM pods"
+          }
+        },
+        "tags": [
+          "Auditing/Monitoring",
+          "Monitoring"
+        ],
+        "description": "AM prometheus metrics",
+        "operationId": "apiKeysGetPrometheusMetricsIdm",
+        "summary": "[API Keys] Get Prometheus Metrics (IDM)"
+      }
+    },
+    "/oauth2/access_token": {
+      "post": {
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "assertion",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "client_id",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "grant_type",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "scope",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Prerequisites"
+        ],
+        "description": "Step 1. Get service account access token using JWT profile",
+        "operationId": "step1GetServiceAccountAccessTokenUsingJwtProfile",
+        "summary": "Step 1. Get service account access token using JWT profile"
+      }
+    },
+    "/oauth2{realm}/access_token": {
+      "parameters": [
+        {
+          "in": "path",
+          "name": "realm",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "post": {
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "client_id",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "client_secret",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "grant_type",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "refresh_token",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "scope",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Example - new access and refresh tokens",
+            "headers": {
+              "Cache-Control": {
+                "type": "string"
+              },
+              "Content-Length": {
+                "type": "string"
+              },
+              "Date": {
+                "type": "string"
+              },
+              "Pragma": {
+                "type": "string"
+              },
+              "X-Content-Type-Options": {
+                "type": "string"
+              },
+              "X-Frame-Options": {
+                "type": "string"
+              }
+            },
+            "schema": {
+              "properties": {
+                "access_token": {
+                  "example": "eyJ0eXAiOiJKV1.cyI6Imh0dHA6Ly9vcGVuYW0uZ",
+                  "type": "string"
+                },
+                "expires_in": {
+                  "example": 3599,
+                  "type": "number"
+                },
+                "refresh_token": {
+                  "example": "eyJ0CJhbGciOiJ.NzgxNCIsImlzcyI6Imh0dH",
+                  "type": "string"
+                },
+                "scope": {
+                  "example": "edit",
+                  "type": "string"
+                },
+                "token_type": {
+                  "example": "Bearer",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "tags": [
+          "OAuth 2.0 Flows",
+          "Refresh Token Flow"
+        ],
+        "description": "Use a refresh token to ask for a new access token.",
+        "operationId": "step4UserRefreshTheAccessToken",
+        "summary": "Step 4: [User] Refresh the Access Token"
+      }
+    },
+    "/oauth2{realm}/authorize": {
+      "parameters": [
+        {
+          "in": "path",
+          "name": "realm",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "post": {
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "client_id",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "csrf",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "decision",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "redirect_uri",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "response_type",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "scope",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Example - parameters captured by HttpBin",
+            "headers": {
+              "Access-Control-Allow-Credentials": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Connection": {
+                "type": "string"
+              },
+              "Content-Length": {
+                "type": "string"
+              },
+              "Date": {
+                "type": "string"
+              },
+              "Server": {
+                "type": "string"
+              }
+            },
+            "schema": {
+              "properties": {
+                "args": {
+                  "properties": {
+                    "client_id": {
+                      "example": "forgerockDemoConfidentialClient",
+                      "type": "string"
+                    },
+                    "code": {
+                      "example": "TGBSt2LHHruGUU0lAOrrjr08jtA",
+                      "type": "string"
+                    },
+                    "iss": {
+                      "example": "http://openam.example.com:8080/openam/oauth2",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "data": {
+                  "example": "",
+                  "type": "string"
+                },
+                "files": {
+                  "properties": {},
+                  "type": "object"
+                },
+                "form": {
+                  "properties": {},
+                  "type": "object"
+                },
+                "headers": {
+                  "properties": {
+                    "Accept": {
+                      "example": "*/*",
+                      "type": "string"
+                    },
+                    "Accept-Encoding": {
+                      "example": "gzip, deflate, br",
+                      "type": "string"
+                    },
+                    "Cookie": {
+                      "example": "amlbcookie=01; iPlanetDirectoryPro=sOpI1RvbCgvlQk.*AAJTSQACMDEA.*",
+                      "type": "string"
+                    },
+                    "Host": {
+                      "example": "httpbin.org",
+                      "type": "string"
+                    },
+                    "Referer": {
+                      "example": "http://openam.example.com:8080/openam/oauth2/realms/root/authorize",
+                      "type": "string"
+                    },
+                    "User-Agent": {
+                      "example": "PostmanRuntime/7.26.3",
+                      "type": "string"
+                    },
+                    "X-Amzn-Trace-Id": {
+                      "example": "Root=1-5f35302f-6babefe013e7ad28bf1a82f0",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "json": {
+                  "example": null,
+                  "x-nullable": true
+                },
+                "method": {
+                  "example": "GET",
+                  "type": "string"
+                },
+                "origin": {
+                  "example": "5.65.200.229",
+                  "type": "string"
+                },
+                "url": {
+                  "example": "https://httpbin.org/anything?code=TGBSt2LHHruGUU0lAOrrjr08jtA&iss=http:%2F%2Fopenam.example.com:8080%2Fopenam%2Foauth2&client_id=forgerockDemoConfidentialClient",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "tags": [
+          "OAuth 2.0 Flows",
+          "Refresh Token Flow"
+        ],
+        "description": "Make a call to the authorization server's authorization endpoint, specifying the SSO token of the user in a cookie.",
+        "operationId": "step2UserGetAuthorizationCode1",
+        "summary": "Step 2: [User] Get Authorization Code"
+      }
+    },
+    "/oauth2{realm}/device/code": {
+      "parameters": [
+        {
+          "in": "path",
+          "name": "realm",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "post": {
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "client_id",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "code_challenge",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "code_challenge_method",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "response_type",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "scope",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Example",
+            "headers": {
+              "Content-Length": {
+                "type": "string"
+              },
+              "Date": {
+                "type": "string"
+              },
+              "X-Content-Type-Options": {
+                "type": "string"
+              },
+              "X-Frame-Options": {
+                "type": "string"
+              }
+            },
+            "schema": {
+              "properties": {
+                "device_code": {
+                  "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJodHRwOi8vb3BlbmFtLmV4YW1wbGUuY29tOjgwODAvb3BlbmFtL29hdXRoMiIsIm5iZiI6MTU5NzMyMTE0OCwidXNlcl9jb2RlIjoieDNXMkpFRkoiLCJpc3MiOiJodHRwOi8vb3BlbmFtLmV4YW1wbGUuY29tOjgwODAvb3BlbmFtL29hdXRoMiIsImV4cCI6MTU5NzMyMTQ0OCwiaWF0IjoxNTk3MzIxMTQ4LCJqdGkiOiIxYWI0MTE5Yy0yYjE4LTQxYWYtYjZjMC1iNTRmZTQxZWZhNjEifQ.gCoWICyPwJhD7LshgpfLpc9zEt6iUrsjmbGv6yk2kW0",
+                  "type": "string"
+                },
+                "expires_in": {
+                  "example": 300,
+                  "type": "number"
+                },
+                "interval": {
+                  "example": 5,
+                  "type": "number"
+                },
+                "user_code": {
+                  "example": "x3W2JEFJ",
+                  "type": "string"
+                },
+                "verification_uri": {
+                  "example": "http://openam.example.com:8080/openam/oauth2/device/user",
+                  "type": "string"
+                },
+                "verification_url": {
+                  "example": "http://openam.example.com:8080/openam/oauth2/device/user",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "tags": [
+          "OAuth 2.0 Flows",
+          "Device Flow with PKCE"
+        ],
+        "description": "Receive a user code and a device code, which can be used to provide consent.\n\n\n\n",
+        "operationId": "step2UserGetUserCodeAndDeviceCode1",
+        "summary": "Step 2: [User] Get User Code and Device Code"
+      }
+    },
+    "/oauth2{realm}/device/user": {
+      "parameters": [
+        {
+          "in": "path",
+          "name": "realm",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "post": {
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "text/plain"
+        ],
+        "parameters": [
+          {
+            "description": "SSO token to protect against cross-site request forgery.",
+            "in": "header",
+            "name": "",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "csrf",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "decision",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "user_code",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Example - page contains \"done: true\"",
+            "headers": {
+              "Content-Length": {
+                "type": "string"
+              },
+              "Date": {
+                "type": "string"
+              },
+              "X-Content-Type-Options": {
+                "type": "string"
+              },
+              "X-Frame-Options": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "tags": [
+          "OAuth 2.0 Flows",
+          "Device Flow with PKCE"
+        ],
+        "description": "Grants consent using the user code recieved in the previous call to allow the client device to access resources.",
+        "operationId": "step3UserGrantConsentUsingTheUserCode",
+        "summary": "Step 3: [User] Grant Consent Using the User Code"
+      }
+    },
+    "/oauth2{realm}/introspect": {
+      "parameters": [
+        {
+          "in": "path",
+          "name": "realm",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "post": {
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "client_id",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "client_secret",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "token",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Example",
+            "headers": {
+              "Content-Length": {
+                "type": "string"
+              },
+              "Date": {
+                "type": "string"
+              },
+              "X-Content-Type-Options": {
+                "type": "string"
+              },
+              "X-Frame-Options": {
+                "type": "string"
+              }
+            },
+            "schema": {
+              "properties": {
+                "active": {
+                  "example": true,
+                  "type": "boolean"
+                },
+                "auditTrackingId": {
+                  "example": "037f02f9-d821-4f72-8563-c5050c40fdc3-53256",
+                  "type": "string"
+                },
+                "authGrantId": {
+                  "example": "bdtxHp1kka6iin4Q2KpNgCfgcVs",
+                  "type": "string"
+                },
+                "auth_level": {
+                  "example": 0,
+                  "type": "number"
+                },
+                "client_id": {
+                  "example": "forgerockDemoPublicClient",
+                  "type": "string"
+                },
+                "exp": {
+                  "example": 1597324784,
+                  "type": "number"
+                },
+                "expires_in": {
+                  "example": 3600,
+                  "type": "number"
+                },
+                "iss": {
+                  "example": "http://openam.example.com:8080/openam/oauth2",
+                  "type": "string"
+                },
+                "realm": {
+                  "example": "/",
+                  "type": "string"
+                },
+                "scope": {
+                  "example": "manage",
+                  "type": "string"
+                },
+                "sub": {
+                  "example": "demo",
+                  "type": "string"
+                },
+                "token_type": {
+                  "example": "Bearer",
+                  "type": "string"
+                },
+                "user_id": {
+                  "example": "demo",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "tags": [
+          "OAuth 2.0 Flows",
+          "Device Flow with PKCE"
+        ],
+        "description": "Retrieve metadata about the active access token, such as, approved scopes, the user that authorized the token, and the expiry time.",
+        "operationId": "step5IntrospectTheAccessToken1",
+        "summary": "Step 5: Introspect the Access Token"
+      }
+    },
+    "/oauth2{realm}/token/revoke": {
+      "parameters": [
+        {
+          "in": "path",
+          "name": "realm",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "post": {
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "client_id",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "client_secret",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "token",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Example - Empty response when revoking a token.",
+            "headers": {
+              "Content-Length": {
+                "type": "string"
+              },
+              "Date": {
+                "type": "string"
+              },
+              "X-Content-Type-Options": {
+                "type": "string"
+              },
+              "X-Frame-Options": {
+                "type": "string"
+              }
+            },
+            "schema": {
+              "properties": {},
+              "type": "object"
+            }
+          }
+        },
+        "tags": [
+          "OAuth 2.0 Flows",
+          "Refresh Token Flow"
+        ],
+        "description": "Revoke the refresh token created in the previous call. Revoking a refresh token also revokes any other associated tokens that were issued with the same authorization grant. ",
+        "operationId": "step5UserRevokeTheRefreshToken",
+        "summary": "Step 5: [User] Revoke the Refresh Token"
+      }
+    },
+    "/openidm/managed/alpha_user": {
+      "get": {
+        "parameters": [
+          {
+            "description": "Optional parameter containing a comma separated list of field references specifying which fields of the targeted JSON resource should be returned.",
+            "in": "query",
+            "name": "_fields",
+            "type": "string"
+          },
+          {
+            "description": "Optional parameter requesting that the returned JSON resource content should be formatted to be more human readable.",
+            "in": "query",
+            "name": "_prettyPrint",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "_queryFilter",
+            "type": "string"
+          },
+          {
+            "description": "(Required) ",
+            "in": "header",
+            "name": "Accept-API-Version",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Managed Identities Copy"
+        ],
+        "description": "[fr:idm:*] Query All Managed Identities",
+        "operationId": "frIdmQueryAllManagedIdentities",
+        "summary": "[fr:idm:*] Query All Managed Identities"
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "_action",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "_queryFilter",
+            "type": "string"
+          },
+          {
+            "description": "Optional parameter containing a comma separated list of field references specifying which fields of the targeted JSON resource should be returned.",
+            "in": "query",
+            "name": "_fields",
+            "type": "string"
+          },
+          {
+            "description": "(Required) ",
+            "in": "header",
+            "name": "Accept-API-Version",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "example": [
+                {
+                  "field": "/telephoneNumber",
+                  "operation": "replace",
+                  "value": ""
+                }
+              ],
+              "items": {
+                "properties": {
+                  "field": {
+                    "example": "/telephoneNumber",
+                    "type": "string"
+                  },
+                  "operation": {
+                    "example": "replace",
+                    "type": "string"
+                  },
+                  "value": {
+                    "example": "",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Managed Identities Copy",
+          "Server-assigned ID"
+        ],
+        "description": "Update the details, in this case; the telephone number, of a managed identity.",
+        "operationId": "step3FrIdmUpdateAManagedIdentity",
+        "summary": "Step 3: [fr:idm:*] Update a Managed Identity"
+      }
+    },
+    "/openidm/managed/alpha_user/{_id}": {
+      "parameters": [
+        {
+          "in": "path",
+          "name": "_id",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "delete": {
+        "consumes": [
+          "text/plain"
+        ],
+        "parameters": [
+          {
+            "description": "(Required) ",
+            "in": "header",
+            "name": "Accept-API-Version",
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "X-OpenIDM-Username",
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "X-OpenIDM-Password",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "format": "binary",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Managed Identities Copy",
+          "Client-assigned ID"
+        ],
+        "description": "Step 4: [fr:idm:*] Delete a Managed Identity",
+        "operationId": "step4FrIdmDeleteAManagedIdentity1",
+        "summary": "Step 4: [fr:idm:*] Delete a Managed Identity"
+      },
+      "get": {
+        "parameters": [
+          {
+            "description": "Optional parameter containing a comma separated list of field references specifying which fields of the targeted JSON resource should be returned.",
+            "in": "query",
+            "name": "_fields",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Managed Identities Copy",
+          "Client-assigned ID"
+        ],
+        "description": "Step 2: [fr:idm:*] Read a Managed Identity",
+        "operationId": "step2FrIdmReadAManagedIdentity1",
+        "summary": "Step 2: [fr:idm:*] Read a Managed Identity"
+      },
+      "patch": {
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "description": "Optional parameter containing a comma separated list of field references specifying which fields of the targeted JSON resource should be returned.",
+            "in": "query",
+            "name": "_fields",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "example": [
+                {
+                  "field": "/telephoneNumber",
+                  "operation": "replace",
+                  "value": ""
+                }
+              ],
+              "items": {
+                "properties": {
+                  "field": {
+                    "example": "/telephoneNumber",
+                    "type": "string"
+                  },
+                  "operation": {
+                    "example": "replace",
+                    "type": "string"
+                  },
+                  "value": {
+                    "example": "",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Managed Identities Copy",
+          "Client-assigned ID"
+        ],
+        "description": "Step 3: [fr:idm:*] Update a Managed Identity",
+        "operationId": "step3FrIdmUpdateAManagedIdentity1",
+        "summary": "Step 3: [fr:idm:*] Update a Managed Identity"
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "properties": {
+                "description": {
+                  "example": "Demo managed identity with client-assigned ID, created by Advanced Identity Cloud Postman collection.",
+                  "type": "string"
+                },
+                "givenName": {
+                  "example": "",
+                  "type": "string"
+                },
+                "mail": {
+                  "example": ".@postman.example.com",
+                  "type": "string"
+                },
+                "password": {
+                  "example": "",
+                  "type": "string"
+                },
+                "sn": {
+                  "example": "",
+                  "type": "string"
+                },
+                "telephoneNumber": {
+                  "example": "",
+                  "type": "string"
+                },
+                "userName": {
+                  "example": "",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Managed Identities Copy",
+          "Client-assigned ID"
+        ],
+        "description": "Step 1: [fr:idm:*] Create a Managed Identity",
+        "operationId": "step1FrIdmCreateAManagedIdentity1",
+        "summary": "Step 1: [fr:idm:*] Create a Managed Identity"
+      }
+    }
+  },
+  "tags": [
+    {
+      "description": "User objects that are stored in the Advanced Identity Cloud are referred to as managed identities.\n\nYou can add, change, and delete managed users by using the platform UI, or over the REST interface by using these endpoints.\n\nAll of the calls in this section require administrative access. The access token is provided as a bearer token in the headers of each request.\n\n> Note:\n>\n> Some of the examples in this collection use client-assigned IDs (such as bjensen and scarter) when creating objects because it makes the examples easier to read. \n> \n> In the Server assigned IDs section they are created with  IDs such as 55ef0a75-f261-47e9-a72b-f5c61c32d339. \n> \n>  Generally, immutable server-assigned UUIDs are used in production environments.",
+      "name": "Managed Identities Copy"
+    },
+    {
+      "description": "In this section, the Advanced Identity Cloud assigns the ID to your identites, ensuring uniqueness.",
+      "name": "Server-assigned ID"
+    },
+    {
+      "name": "Client-assigned ID"
+    },
+    {
+      "description": "This Postman Collection requires a number of prerequisites in order to function.\n\nEnsure you have completed these steps at least once for each new Advanced Identity Cloud instance you connect to with the collection.",
+      "name": "Prerequisites"
+    },
+    {
+      "description": "Advanced Identity Cloud provides user self-service features that lets your customers self-register to your web site, securely reset forgotten passwords, and retrieve their usernames.\n\nThese user self-service capabilities greatly reduce help desk costs and offers a rich online experience that strengthens customer loyalty. ",
+      "name": "User Self-service"
+    },
+    {
+      "description": "Let non-authenticated users register to your site on their own. You can add additional security features like email verification, knowledge-based authentication (KBA) security questions, Google reCAPTCHA, and custom plugins to add to your User Self-Registration process. ",
+      "name": "Registration"
+    },
+    {
+      "description": "Lets users retrieve their forgotten usernames. If security questions are enabled, users must also correctly answer their pre-configured security questions before retrieving their usernames. ",
+      "name": "Forgotten Username"
+    },
+    {
+      "description": "Lets registered users already in your system reset their passwords. The default password policy is set in the underlying directory server and requires a minimum password length of eight characters by default. If security questions are enabled, users must also correctly answer their pre-configured security questions before resetting their passwords.",
+      "name": "Reset Password"
+    },
+    {
+      "description": "The `/json/authenticate` endpoint supports callback mechanisms to perform complex authentication journeys. Whenever AM needs to return or request information, it will return a JSON object with the authentication step, the authentication identifier, and the related callbacks.\n\nThe following types of callbacks are available:\n\n- Read-only callbacks. AM uses read-only callbacks to provide information to the user, such as text messages or the amount of time that the user needs to wait before continuing their authentication journey.\n- Interactive callbacks. AM uses interactive callbacks ask the user for information. For example, to request their user name and password, or to request that the user chooses between different options.\n- Backchannel callbacks. AM uses backchannel callbacks when it needs to access additional information from the user's request. For example, when it requires a particular header or a certificate.\n    \n\nRead-only and interactive callbacks have an array of output elements suitable for displaying to the end user. The JSON returned in interactive callbacks also contains an array of input elements, which must be completed and returned to AM.",
+      "name": "Intelligent Access"
+    },
+    {
+      "description": "Users in the Advanced Identity Cloud have a record in the system containing various pieces of information relevant to them.\n\nWe call these records \"profiles\", and they can represent information such as the devices they use to authenticate, or the OAuth 2.0 clients they have given consent to use their data.",
+      "name": "Identity Profiles"
+    },
+    {
+      "name": "Authenticate as \"Postman Demo User\""
+    },
+    {
+      "description": "Many of the OAuth 2.0/OpenID Connect flows require the user to explicitly agree to provide the client with access to their resources.\n\nManage the users' OAuth 2.0 clients using these endpoints.",
+      "name": "Authorized OAuth 2.0 Clients"
+    },
+    {
+      "description": "Multi-factor authentication requires your users to register a device, which is used as an additional factor.\n\nQuery and manage those devices with these endpoints.",
+      "name": "Devices"
+    },
+    {
+      "name": "Trusted Device Profiles"
+    },
+    {
+      "name": "OATH"
+    },
+    {
+      "name": "Push"
+    },
+    {
+      "name": "WebAuthn"
+    },
+    {
+      "description": "This section describes the OAuth 2.0 flows that the Advanced Identity Cloud supports, and also provides the information required to implement them. \n\nYou should decide which flow is best for your environment based on the application that will be the OAuth 2.0 client. ",
+      "name": "OAuth 2.0 Flows"
+    },
+    {
+      "description": "The Authorization Code grant is a two-step interactive process used when a client, for example, a Java application running on a server, requires access to protected resources.\n\nThe Authorization Code grant is the most secure of all the OAuth 2.0 grants for the following reasons:\n\n\tIt is a two-step process: the user must authenticate and authorize the client to see the resources and the authorization server must validate the code again before issuing the access token.\n\t\n\tThe authorization server delivers the access token directly to the client, usually over HTTPS. The client secret is never exposed publicly, which protects confidential clients.",
+      "name": "Authorization Code Grant"
+    },
+    {
+      "description": "The Authorization Code Grant, when combined with the PKCE standard (RFC 7636), is used when a client, usually a mobile or a JavaScript application, requires access to protected resources.\n\nThe flow is similar to the regular Authorization Code Grant type, but the client must generate a code that will be part of the communication between the client and the authorization server. This code mitigates against interception attacks performed by malicious users.\n\nSince communication between the client and the authorization server is not secure, clients are usually public so their secrets do not get compromised. Also, browser-based clients making OAuth 2.0 requests to different domains must implement Cross-Origin Resource Sharing (CORS) calls to access OAuth 2.0 resources in different domains.\n",
+      "name": "Authorization Code Grant with PKCE"
+    },
+    {
+      "description": "The Implicit grant is designed for public clients that run inside the resource owner's user-agent, for example, JavaScript applications.\n\nSince applications running in the user-agent are considered less trusted than applications running in servers, the authorization server will never issue refresh tokens in this flow. There is a security impact of cross-site scripting (XSS) attacks that could leak the access token to other systems, and implement Cross-Origin Resource Sharing (CORS) to make OAuth 2.0 requests to different domains.\n\nDue to the security implications of this flow, it is recommended to use the Authorization Code grant with PKCE flow whenever possible.",
+      "name": "Implicit Grant"
+    },
+    {
+      "description": "The Resource Owner Password Credentials (ROPC) grant flow allows the client to use the resource owner's user name and password to get an access token.\n\nSince the resource owner shares their credentials with the client, this flow is deemed the most insecure of the OAuth 2.0 flows. The resource owner's credentials can potentially be leaked or abused by the client application, and the resource owner has no control over the authorization process.\n\nYou should implement the ROPC grant flow only if the resource owner has a trust relationship with the client (such as the device operating system, or a highly privileged application).",
+      "name": "Resource Owner Password Credentials Grant"
+    },
+    {
+      "description": "The Client Credentials grant is used when a client is also the resource owner and is accessing its own data instead of acting in behalf of a user. For example, an application that needs access to a protected resource to retrieve its own data to perform a task, or update its configuration, would use the Client Credentials grant to acquire an access token.\n\nThe Client Credentials Grant flow supports confidential clients only.",
+      "name": "Client Credentials Grant"
+    },
+    {
+      "description": "The Device Flow is designed for client devices that have limited user interfaces, such as a set-top box, streaming radio, or a server process running on a headless operating system.\n\nRather than logging in by using the client device itself, you can authorize the client to access protected resources on your behalf by logging in with a different user agent, such as an Internet browser or smartphone, and entering a code displayed on the client device.",
+      "name": "Device Flow"
+    },
+    {
+      "description": "The Device Flow is designed for client devices that have limited user interfaces, such as a set-top box. Since the devices are usually public clients and the device code can be intercepted by malicious users, you can combine the Device Flow with the PKCE standard (RFC 7636) to mitigate against interception attacks if the devices allow it.\n\nThis flow is beyond the PKCE and the Device Flow specs, since the Device Flow spec is still a draft and it is not officially recognized by the PKCE standard.",
+      "name": "Device Flow with PKCE"
+    },
+    {
+      "description": "Refresh tokens are a type of token that can be used to obtain a new access token that may have identical or narrower scopes than the original. Refresh tokens are long-lived by default, and AM allows you to configure the lifetime of the tokens in the OAuth 2.0 Provider settings, or in each client. By default, the configuration of the OAuth 2.0 Provider is used. ",
+      "name": "Refresh Token Flow"
+    },
+    {
+      "description": "The Advanced Identity Cloud supports a comprehensive Audit Logging Service that captures key auditing events, critical for system security, troubleshooting, and regulatory compliance.\n\nAudit logs gather operational information about events occurring within a deployment to track processes and security data, such as authentication mechanisms, system access, user and administrator activity, error messages, and configuration changes. \n\nThe ID Cloud also offer advanced monitoring services that will let you monitor metrics, such as authentication and authorization outcomes, token-related operations, CTS queues, or JVM usage.",
+      "name": "Auditing/Monitoring"
+    },
+    {
+      "description": "The Audit Logging Service uses a structured message format that adheres to a consistent log structure common across the ForgeRock Identity Platform. This common structure allows correlation between log messages of the different components of the Platform once the transaction IDs are trusted by enabling the ForgerRock trust transaction header system property. ",
+      "name": "Auditing"
+    },
+    {
+      "description": "Check the health status of your Advanced Identity Cloud.",
+      "name": "Health"
+    },
+    {
+      "description": "Prometheus is third-party software used for gathering and processing monitoring data. Advanced Identity Cloud exposes the endpoints in this section, which Prometheus uses to gather metrics.",
+      "name": "Monitoring"
+    },
+    {
+      "description": "When a user authenticates to the Advanced Identity Cloud, they are issues with a session token.\n\nYou can obtain information about a users' session, and terminate it, which represents the user logging out of your service.",
+      "name": "Session Management"
+    },
+    {
+      "name": "Well Known"
+    },
+    {
+      "name": "Assetlinks"
+    }
+  ]
+}

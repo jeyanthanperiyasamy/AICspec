@@ -1,0 +1,5123 @@
+---
+openapi: 3.0.3
+info:
+  title: New Collection
+  version: 1.0.0
+  contact: {}
+servers:
+- url: "openam-recaptcha.forgeblocks.com"
+- url: "openam-recaptcha.forgeblocks.com"
+- url: "openam-recaptcha.forgeblocks.com"
+paths:
+  "/openidm/managed/alpha_user":
+    get:
+      tags:
+      - Managed Identities Copy
+      summary: 'Step 2: [fr:idm:*] Read a Managed Identity'
+      description: Obtain the details of a managed identity.
+      operationId: step2FrIdmReadAManagedIdentity
+      parameters:
+      - name: _fields
+        in: query
+        schema:
+          type: string
+          example: ''
+        description: Optional parameter containing a comma separated list of field
+          references specifying which fields of the targeted JSON resource should
+          be returned.
+      - name: _queryFilter
+        in: query
+        schema:
+          type: string
+          example: userName eq "{{managedUsername}}"
+      - name: accept-api-version
+        in: header
+        schema:
+          type: string
+          example: resource=1.0
+        description: "(Required) "
+      - name: _prettyPrint
+        in: query
+        schema:
+          type: string
+          example: 'true'
+        description: Optional parameter requesting that the returned JSON resource
+          content should be formatted to be more human readable.
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearerAuth: []
+    post:
+      tags:
+      - Managed Identities Copy
+      - Server-assigned ID
+      summary: 'Step 1: [fr:idm:*] Create a Managed Identity'
+      description: Create a new managed identity.
+      operationId: step1FrIdmCreateAManagedIdentity
+      parameters:
+      - name: _action
+        in: query
+        schema:
+          type: string
+          example: create
+      - name: _queryFilter
+        in: query
+        schema:
+          type: string
+          example: userName eq "{{managedUsername}}"
+      - name: _fields
+        in: query
+        schema:
+          type: string
+          example: ''
+        description: Optional parameter containing a comma separated list of field
+          references specifying which fields of the targeted JSON resource should
+          be returned.
+      - name: accept-api-version
+        in: header
+        schema:
+          type: string
+          example: resource=1.0
+        description: "(Required) "
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  field:
+                    type: string
+                    example: "/telephoneNumber"
+                  operation:
+                    type: string
+                    example: replace
+                  value:
+                    type: string
+                    example: 287-449-2681
+              example:
+              - field: "/telephoneNumber"
+                operation: replace
+                value: 287-449-2681
+            examples:
+              'Step 1: [fr:idm:*] Create a Managed Identity':
+                value:
+                  description: Demo managed identity with server-assigned ID, created
+                    by Advanced Identity Cloud Postman collection.
+                  givenName: "{{varFirstName}}"
+                  mail: "{{varFirstName}}.{{varLastName}}@postman.example.com"
+                  password: xtEu1YpUxl7N_gN#4c370a
+                  sn: "{{varLastName}}"
+                  telephoneNumber: 287-449-2681
+                  userName: "{{varUserName}}"
+              'Step 3: [fr:idm:*] Update a Managed Identity':
+                value:
+                - field: "/telephoneNumber"
+                  operation: replace
+                  value: 287-449-2681
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearerAuth: []
+  "/openidm/managed/alpha_user/{_id}":
+    get:
+      tags:
+      - Managed Identities Copy
+      - Client-assigned ID
+      summary: 'Step 2: [fr:idm:*] Read a Managed Identity'
+      description: 'Step 2: [fr:idm:*] Read a Managed Identity'
+      operationId: step2FrIdmReadAManagedIdentity1
+      parameters:
+      - name: _fields
+        in: query
+        schema:
+          type: string
+          example: ''
+        description: Optional parameter containing a comma separated list of field
+          references specifying which fields of the targeted JSON resource should
+          be returned.
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearerAuth: []
+    put:
+      tags:
+      - Managed Identities Copy
+      - Client-assigned ID
+      summary: 'Step 1: [fr:idm:*] Create a Managed Identity'
+      description: 'Step 1: [fr:idm:*] Create a Managed Identity'
+      operationId: step1FrIdmCreateAManagedIdentity1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                description:
+                  type: string
+                  example: Demo managed identity with client-assigned ID, created
+                    by Advanced Identity Cloud Postman collection.
+                givenName:
+                  type: string
+                  example: "{{varFirstName}}"
+                mail:
+                  type: string
+                  example: "{{varFirstName}}.{{varLastName}}@postman.example.com"
+                password:
+                  type: string
+                  example: xtEu1YpUxl7N_gN#4c370a
+                sn:
+                  type: string
+                  example: "{{varLastName}}"
+                telephoneNumber:
+                  type: string
+                  example: 287-449-2681
+                userName:
+                  type: string
+                  example: "{{varUserName}}"
+            examples:
+              'Step 1: [fr:idm:*] Create a Managed Identity':
+                value:
+                  description: Demo managed identity with client-assigned ID, created
+                    by Advanced Identity Cloud Postman collection.
+                  givenName: "{{varFirstName}}"
+                  mail: "{{varFirstName}}.{{varLastName}}@postman.example.com"
+                  password: xtEu1YpUxl7N_gN#4c370a
+                  sn: "{{varLastName}}"
+                  telephoneNumber: 287-449-2681
+                  userName: "{{varUserName}}"
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearerAuth: []
+    delete:
+      tags:
+      - Managed Identities Copy
+      - Client-assigned ID
+      summary: 'Step 4: [fr:idm:*] Delete a Managed Identity'
+      description: Delete a managed identity.
+      operationId: step4FrIdmDeleteAManagedIdentity
+      parameters:
+      - name: accept-api-version
+        in: header
+        schema:
+          type: string
+          example: resource=1.0
+        description: "(Required) "
+      - name: x-openidm-username
+        in: header
+        schema:
+          type: string
+          example: "{{adminUsername}}"
+      - name: x-openidm-password
+        in: header
+        schema:
+          type: string
+          example: "{{adminPassword}}"
+      requestBody:
+        content:
+          application/json:
+            examples:
+              'Step 4: [fr:idm:*] Delete a Managed Identity':
+                value: ''
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearerAuth: []
+    patch:
+      tags:
+      - Managed Identities Copy
+      - Client-assigned ID
+      summary: 'Step 3: [fr:idm:*] Update a Managed Identity'
+      description: 'Step 3: [fr:idm:*] Update a Managed Identity'
+      operationId: step3FrIdmUpdateAManagedIdentity
+      parameters:
+      - name: _fields
+        in: query
+        schema:
+          type: string
+          example: ''
+        description: Optional parameter containing a comma separated list of field
+          references specifying which fields of the targeted JSON resource should
+          be returned.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  field:
+                    type: string
+                    example: "/telephoneNumber"
+                  operation:
+                    type: string
+                    example: replace
+                  value:
+                    type: string
+                    example: 287-449-2681
+              example:
+              - field: "/telephoneNumber"
+                operation: replace
+                value: 287-449-2681
+            examples:
+              'Step 3: [fr:idm:*] Update a Managed Identity':
+                value:
+                - field: "/telephoneNumber"
+                  operation: replace
+                  value: 287-449-2681
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearerAuth: []
+    parameters:
+    - name: _id
+      in: path
+      required: true
+      schema:
+        type: string
+        example: "{{managedUserId}}"
+  "/oauth2/access_token":
+    post:
+      tags:
+      - Prerequisites
+      summary: Step 1. Get service account access token using JWT profile
+      description: Step 1. Get service account access token using JWT profile
+      operationId: step1GetServiceAccountAccessTokenUsingJwtProfile
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                assertion:
+                  type: string
+                  example: "{{signedAdminServiceAccounJWT}}"
+                client_id:
+                  type: string
+                  example: service-account
+                grant_type:
+                  type: string
+                  example: urn:ietf:params:oauth:grant-type:jwt-bearer
+                scope:
+                  type: string
+                  example: fr:am:* fr:idm:*
+            examples:
+              Step 1. Get service account access token using JWT profile:
+                value:
+                  assertion: "{{signedAdminServiceAccounJWT}}"
+                  client_id: service-account
+                  grant_type: urn:ietf:params:oauth:grant-type:jwt-bearer
+                  scope: fr:am:* fr:idm:*
+      responses:
+        '200':
+          description: ''
+      security:
+      - {}
+  "/json{realm}/realm-config/agents/OAuth2Client/{postmanConfidentialClientId}":
+    put:
+      tags:
+      - Prerequisites
+      summary: 'Step 2: [fr:am:*] Create a Confidential OAuth 2.0 Client'
+      description: Register a demonstration confidential client, used in the OAuth
+        2.0 flows section of the collection.
+      operationId: step2FrAmCreateAConfidentialOauth20Client
+      parameters:
+      - name: x-requested-with
+        in: header
+        schema:
+          type: string
+          example: PingOne Advanced Identity Cloud Postman Collection
+        description: Custom header.
+      - name: "{{cookiename}}"
+        in: header
+        schema:
+          type: string
+          example: "{{adminSSOToken}}"
+        description: 'SSO token of an administrator. '
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                advancedOAuth2ClientConfig:
+                  type: object
+                  properties:
+                    clientUri:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: array
+                          items:
+                            type: string
+                            example: 'Unknown Type: any'
+                          example:
+                          - 'Unknown Type: any'
+                    contacts:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: array
+                          items:
+                            type: string
+                            example: 'Unknown Type: any'
+                          example:
+                          - 'Unknown Type: any'
+                    descriptions:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: array
+                          items:
+                            type: string
+                            example: 'Unknown Type: any'
+                          example:
+                          - 'Unknown Type: any'
+                    grantTypes:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: false
+                        value:
+                          type: array
+                          items:
+                            type: string
+                            example: authorization_code
+                          example:
+                          - authorization_code
+                          - implicit
+                          - password
+                          - client_credentials
+                          - refresh_token
+                          - urn:ietf:params:oauth:grant-type:uma-ticket
+                          - urn:ietf:params:oauth:grant-type:device_code
+                          - urn:ietf:params:oauth:grant-type:saml2-bearer
+                          - urn:ietf:params:oauth:grant-type:jwt-bearer
+                          - urn:openid:params:grant-type:ciba
+                    isConsentImplied:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: boolean
+                          example: true
+                    logoUri:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: array
+                          items:
+                            type: string
+                            example: 'Unknown Type: any'
+                          example:
+                          - 'Unknown Type: any'
+                    mixUpMitigation:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: boolean
+                          example: true
+                    name:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: array
+                          items:
+                            type: string
+                            example: 'Unknown Type: any'
+                          example:
+                          - 'Unknown Type: any'
+                    policyUri:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: array
+                          items:
+                            type: string
+                            example: 'Unknown Type: any'
+                          example:
+                          - 'Unknown Type: any'
+                    requestUris:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: array
+                          items:
+                            type: string
+                            example: 'Unknown Type: any'
+                          example:
+                          - 'Unknown Type: any'
+                    responseTypes:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: false
+                        value:
+                          type: array
+                          items:
+                            type: string
+                            example: code
+                          example:
+                          - code
+                          - token
+                    sectorIdentifierUri:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+                    subjectType:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+                    tokenEndpointAuthMethod:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+                    updateAccessToken:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+                coreOAuth2ClientConfig:
+                  type: object
+                  properties:
+                    accessTokenLifetime:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: number
+                          example: 0
+                    agentgroup:
+                      type: string
+                      example: ''
+                    authorizationCodeLifetime:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: number
+                          example: 0
+                    clientName:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: array
+                          items:
+                            type: string
+                            example: 'Unknown Type: any'
+                          example:
+                          - 'Unknown Type: any'
+                    clientType:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: false
+                        value:
+                          type: string
+                          example: Confidential
+                    defaultScopes:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: array
+                          items:
+                            type: string
+                            example: 'Unknown Type: any'
+                          example:
+                          - 'Unknown Type: any'
+                    loopbackInterfaceRedirection:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: boolean
+                          example: true
+                    redirectionUris:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: false
+                        value:
+                          type: array
+                          items:
+                            type: string
+                            example: https://httpbin.org/anything
+                          example:
+                          - https://httpbin.org/anything
+                    refreshTokenLifetime:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: number
+                          example: 0
+                    scopes:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: false
+                        value:
+                          type: array
+                          items:
+                            type: string
+                            example: write
+                          example:
+                          - write
+                          - read
+                          - share
+                          - print
+                          - copy
+                          - delete
+                          - manage
+                          - edit
+                          - am-introspect-all-tokens
+                    status:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: false
+                        value:
+                          type: string
+                          example: Active
+                    userpassword:
+                      type: string
+                      example: "{{postmanClientSecret}}"
+                coreOpenIDClientConfig:
+                  type: object
+                  properties:
+                    claims:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: array
+                          items:
+                            type: string
+                            example: 'Unknown Type: any'
+                          example:
+                          - 'Unknown Type: any'
+                    clientSessionUri:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+                    defaultAcrValues:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: array
+                          items:
+                            type: string
+                            example: 'Unknown Type: any'
+                          example:
+                          - 'Unknown Type: any'
+                    defaultMaxAge:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: number
+                          example: 0
+                    defaultMaxAgeEnabled:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: boolean
+                          example: true
+                    jwtTokenLifetime:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: number
+                          example: 0
+                    postLogoutRedirectUri:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: array
+                          items:
+                            type: string
+                            example: 'Unknown Type: any'
+                          example:
+                          - 'Unknown Type: any'
+                coreUmaClientConfig:
+                  type: object
+                  properties:
+                    claimsRedirectionUris:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: array
+                          items:
+                            type: string
+                            example: 'Unknown Type: any'
+                          example:
+                          - 'Unknown Type: any'
+                signEncOAuth2ClientConfig:
+                  type: object
+                  properties:
+                    clientJwtPublicKey:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+                    idTokenEncryptionAlgorithm:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+                    idTokenEncryptionEnabled:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: boolean
+                          example: true
+                    idTokenEncryptionMethod:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+                    idTokenPublicEncryptionKey:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+                    idTokenSignedResponseAlg:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+                    jwkSet:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+                    jwkStoreCacheMissCacheTime:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: number
+                          example: 0
+                    jwksCacheTimeout:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: number
+                          example: 0
+                    jwksUri:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+                    mTLSCertificateBoundAccessTokens:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: boolean
+                          example: true
+                    mTLSSubjectDN:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+                    mTLSTrustedCert:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+                    publicKeyLocation:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+                    requestParameterEncryptedAlg:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+                    requestParameterEncryptedEncryptionAlgorithm:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+                    requestParameterSignedAlg:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+                    tokenEndpointAuthSigningAlgorithm:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+                    tokenIntrospectionEncryptedResponseAlg:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+                    tokenIntrospectionEncryptedResponseEncryptionAlgorithm:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+                    tokenIntrospectionResponseFormat:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+                    tokenIntrospectionSignedResponseAlg:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+                    userinfoEncryptedResponseAlg:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+                    userinfoEncryptedResponseEncryptionAlgorithm:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+                    userinfoResponseFormat:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+                    userinfoSignedResponseAlg:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+            examples:
+              'Step 2: [fr:am:*] Create a Confidential OAuth 2.0 Client':
+                value:
+                  advancedOAuth2ClientConfig:
+                    clientUri:
+                      inherited: true
+                      value:
+                      - 'Unknown Type: any'
+                    contacts:
+                      inherited: true
+                      value:
+                      - 'Unknown Type: any'
+                    descriptions:
+                      inherited: true
+                      value:
+                      - 'Unknown Type: any'
+                    grantTypes:
+                      inherited: false
+                      value:
+                      - authorization_code
+                      - implicit
+                      - password
+                      - client_credentials
+                      - refresh_token
+                      - urn:ietf:params:oauth:grant-type:uma-ticket
+                      - urn:ietf:params:oauth:grant-type:device_code
+                      - urn:ietf:params:oauth:grant-type:saml2-bearer
+                      - urn:ietf:params:oauth:grant-type:jwt-bearer
+                      - urn:openid:params:grant-type:ciba
+                    isConsentImplied:
+                      inherited: true
+                      value: true
+                    logoUri:
+                      inherited: true
+                      value:
+                      - 'Unknown Type: any'
+                    mixUpMitigation:
+                      inherited: true
+                      value: true
+                    name:
+                      inherited: true
+                      value:
+                      - 'Unknown Type: any'
+                    policyUri:
+                      inherited: true
+                      value:
+                      - 'Unknown Type: any'
+                    requestUris:
+                      inherited: true
+                      value:
+                      - 'Unknown Type: any'
+                    responseTypes:
+                      inherited: false
+                      value:
+                      - code
+                      - token
+                    sectorIdentifierUri:
+                      inherited: true
+                      value: string
+                    subjectType:
+                      inherited: true
+                      value: string
+                    tokenEndpointAuthMethod:
+                      inherited: true
+                      value: string
+                    updateAccessToken:
+                      inherited: true
+                      value: string
+                  coreOAuth2ClientConfig:
+                    accessTokenLifetime:
+                      inherited: true
+                      value: 0
+                    agentgroup: ''
+                    authorizationCodeLifetime:
+                      inherited: true
+                      value: 0
+                    clientName:
+                      inherited: true
+                      value:
+                      - 'Unknown Type: any'
+                    clientType:
+                      inherited: false
+                      value: Confidential
+                    defaultScopes:
+                      inherited: true
+                      value:
+                      - 'Unknown Type: any'
+                    loopbackInterfaceRedirection:
+                      inherited: true
+                      value: true
+                    redirectionUris:
+                      inherited: false
+                      value:
+                      - https://httpbin.org/anything
+                    refreshTokenLifetime:
+                      inherited: true
+                      value: 0
+                    scopes:
+                      inherited: false
+                      value:
+                      - write
+                      - read
+                      - share
+                      - print
+                      - copy
+                      - delete
+                      - manage
+                      - edit
+                      - am-introspect-all-tokens
+                    status:
+                      inherited: false
+                      value: Active
+                    userpassword: "{{postmanClientSecret}}"
+                  coreOpenIDClientConfig:
+                    claims:
+                      inherited: true
+                      value:
+                      - 'Unknown Type: any'
+                    clientSessionUri:
+                      inherited: true
+                      value: string
+                    defaultAcrValues:
+                      inherited: true
+                      value:
+                      - 'Unknown Type: any'
+                    defaultMaxAge:
+                      inherited: true
+                      value: 0
+                    defaultMaxAgeEnabled:
+                      inherited: true
+                      value: true
+                    jwtTokenLifetime:
+                      inherited: true
+                      value: 0
+                    postLogoutRedirectUri:
+                      inherited: true
+                      value:
+                      - 'Unknown Type: any'
+                  coreUmaClientConfig:
+                    claimsRedirectionUris:
+                      inherited: true
+                      value:
+                      - 'Unknown Type: any'
+                  signEncOAuth2ClientConfig:
+                    clientJwtPublicKey:
+                      inherited: true
+                      value: string
+                    idTokenEncryptionAlgorithm:
+                      inherited: true
+                      value: string
+                    idTokenEncryptionEnabled:
+                      inherited: true
+                      value: true
+                    idTokenEncryptionMethod:
+                      inherited: true
+                      value: string
+                    idTokenPublicEncryptionKey:
+                      inherited: true
+                      value: string
+                    idTokenSignedResponseAlg:
+                      inherited: true
+                      value: string
+                    jwkSet:
+                      inherited: true
+                      value: string
+                    jwkStoreCacheMissCacheTime:
+                      inherited: true
+                      value: 0
+                    jwksCacheTimeout:
+                      inherited: true
+                      value: 0
+                    jwksUri:
+                      inherited: true
+                      value: string
+                    mTLSCertificateBoundAccessTokens:
+                      inherited: true
+                      value: true
+                    mTLSSubjectDN:
+                      inherited: true
+                      value: string
+                    mTLSTrustedCert:
+                      inherited: true
+                      value: string
+                    publicKeyLocation:
+                      inherited: true
+                      value: string
+                    requestParameterEncryptedAlg:
+                      inherited: true
+                      value: string
+                    requestParameterEncryptedEncryptionAlgorithm:
+                      inherited: true
+                      value: string
+                    requestParameterSignedAlg:
+                      inherited: true
+                      value: string
+                    tokenEndpointAuthSigningAlgorithm:
+                      inherited: true
+                      value: string
+                    tokenIntrospectionEncryptedResponseAlg:
+                      inherited: true
+                      value: string
+                    tokenIntrospectionEncryptedResponseEncryptionAlgorithm:
+                      inherited: true
+                      value: string
+                    tokenIntrospectionResponseFormat:
+                      inherited: true
+                      value: string
+                    tokenIntrospectionSignedResponseAlg:
+                      inherited: true
+                      value: string
+                    userinfoEncryptedResponseAlg:
+                      inherited: true
+                      value: string
+                    userinfoEncryptedResponseEncryptionAlgorithm:
+                      inherited: true
+                      value: string
+                    userinfoResponseFormat:
+                      inherited: true
+                      value: string
+                    userinfoSignedResponseAlg:
+                      inherited: true
+                      value: string
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearerAuth: []
+    parameters:
+    - name: realm
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: postmanConfidentialClientId
+      in: path
+      required: true
+      schema:
+        type: string
+  "/json{realm}/realm-config/agents/OAuth2Client/{postmanPublicClientId}":
+    put:
+      tags:
+      - Prerequisites
+      summary: 'Step 3: [fr:am:*] Create a Public OAuth 2.0 Client'
+      description: Register a demonstration public client, used in the OAuth 2.0 flows
+        section of the collection.
+      operationId: step3FrAmCreateAPublicOauth20Client
+      parameters:
+      - name: x-requested-with
+        in: header
+        schema:
+          type: string
+          example: PingOne Advanced Identity Cloud Postman Collection
+        description: Custom header.
+      - name: "{{cookiename}}"
+        in: header
+        schema:
+          type: string
+          example: "{{adminSSOToken}}"
+        description: 'SSO token of an administrator. '
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                advancedOAuth2ClientConfig:
+                  type: object
+                  properties:
+                    clientUri:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: array
+                          items:
+                            type: string
+                            example: 'Unknown Type: any'
+                          example:
+                          - 'Unknown Type: any'
+                    contacts:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: array
+                          items:
+                            type: string
+                            example: 'Unknown Type: any'
+                          example:
+                          - 'Unknown Type: any'
+                    descriptions:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: array
+                          items:
+                            type: string
+                            example: 'Unknown Type: any'
+                          example:
+                          - 'Unknown Type: any'
+                    grantTypes:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: false
+                        value:
+                          type: array
+                          items:
+                            type: string
+                            example: authorization_code
+                          example:
+                          - authorization_code
+                          - implicit
+                          - password
+                          - client_credentials
+                          - refresh_token
+                          - urn:ietf:params:oauth:grant-type:uma-ticket
+                          - urn:ietf:params:oauth:grant-type:device_code
+                          - urn:ietf:params:oauth:grant-type:saml2-bearer
+                          - urn:ietf:params:oauth:grant-type:jwt-bearer
+                          - urn:openid:params:grant-type:ciba
+                    isConsentImplied:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: boolean
+                          example: true
+                    logoUri:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: array
+                          items:
+                            type: string
+                            example: 'Unknown Type: any'
+                          example:
+                          - 'Unknown Type: any'
+                    mixUpMitigation:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: boolean
+                          example: true
+                    name:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: array
+                          items:
+                            type: string
+                            example: 'Unknown Type: any'
+                          example:
+                          - 'Unknown Type: any'
+                    policyUri:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: array
+                          items:
+                            type: string
+                            example: 'Unknown Type: any'
+                          example:
+                          - 'Unknown Type: any'
+                    requestUris:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: array
+                          items:
+                            type: string
+                            example: 'Unknown Type: any'
+                          example:
+                          - 'Unknown Type: any'
+                    responseTypes:
+                      type: array
+                      items:
+                        type: string
+                        example: code
+                      example:
+                      - code
+                      - token
+                    sectorIdentifierUri:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+                    subjectType:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+                    tokenEndpointAuthMethod:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+                    updateAccessToken:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+                coreOAuth2ClientConfig:
+                  type: object
+                  properties:
+                    accessTokenLifetime:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: number
+                          example: 0
+                    agentgroup:
+                      type: string
+                      example: ''
+                    authorizationCodeLifetime:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: number
+                          example: 0
+                    clientName:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: array
+                          items:
+                            type: string
+                            example: 'Unknown Type: any'
+                          example:
+                          - 'Unknown Type: any'
+                    clientType:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: false
+                        value:
+                          type: string
+                          example: Public
+                    defaultScopes:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: array
+                          items:
+                            type: string
+                            example: 'Unknown Type: any'
+                          example:
+                          - 'Unknown Type: any'
+                    loopbackInterfaceRedirection:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: boolean
+                          example: true
+                    redirectionUris:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: false
+                        value:
+                          type: array
+                          items:
+                            type: string
+                            example: https://httpbin.org/anything
+                          example:
+                          - https://httpbin.org/anything
+                    refreshTokenLifetime:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: number
+                          example: 0
+                    scopes:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: false
+                        value:
+                          type: array
+                          items:
+                            type: string
+                            example: write
+                          example:
+                          - write
+                          - read
+                          - share
+                          - print
+                          - copy
+                          - delete
+                          - manage
+                          - edit
+                    status:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: false
+                        value:
+                          type: string
+                          example: Active
+                    userpassword:
+                      type: string
+                      example: "{{postmanClientSecret}}"
+                coreOpenIDClientConfig:
+                  type: object
+                  properties:
+                    claims:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: array
+                          items:
+                            type: string
+                            example: 'Unknown Type: any'
+                          example:
+                          - 'Unknown Type: any'
+                    clientSessionUri:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+                    defaultAcrValues:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: array
+                          items:
+                            type: string
+                            example: 'Unknown Type: any'
+                          example:
+                          - 'Unknown Type: any'
+                    defaultMaxAge:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: number
+                          example: 0
+                    defaultMaxAgeEnabled:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: boolean
+                          example: true
+                    jwtTokenLifetime:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: number
+                          example: 0
+                    postLogoutRedirectUri:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: array
+                          items:
+                            type: string
+                            example: 'Unknown Type: any'
+                          example:
+                          - 'Unknown Type: any'
+                coreUmaClientConfig:
+                  type: object
+                  properties:
+                    claimsRedirectionUris:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: array
+                          items:
+                            type: string
+                            example: 'Unknown Type: any'
+                          example:
+                          - 'Unknown Type: any'
+                signEncOAuth2ClientConfig:
+                  type: object
+                  properties:
+                    clientJwtPublicKey:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+                    idTokenEncryptionAlgorithm:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+                    idTokenEncryptionEnabled:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: boolean
+                          example: true
+                    idTokenEncryptionMethod:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+                    idTokenPublicEncryptionKey:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+                    idTokenSignedResponseAlg:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+                    jwkSet:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+                    jwkStoreCacheMissCacheTime:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: number
+                          example: 0
+                    jwksCacheTimeout:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: number
+                          example: 0
+                    jwksUri:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+                    mTLSCertificateBoundAccessTokens:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: boolean
+                          example: true
+                    mTLSSubjectDN:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+                    mTLSTrustedCert:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+                    publicKeyLocation:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+                    requestParameterEncryptedAlg:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+                    requestParameterEncryptedEncryptionAlgorithm:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+                    requestParameterSignedAlg:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+                    tokenEndpointAuthSigningAlgorithm:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+                    tokenIntrospectionEncryptedResponseAlg:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+                    tokenIntrospectionEncryptedResponseEncryptionAlgorithm:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+                    tokenIntrospectionResponseFormat:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+                    tokenIntrospectionSignedResponseAlg:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+                    userinfoEncryptedResponseAlg:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+                    userinfoEncryptedResponseEncryptionAlgorithm:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+                    userinfoResponseFormat:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+                    userinfoSignedResponseAlg:
+                      type: object
+                      properties:
+                        inherited:
+                          type: boolean
+                          example: true
+                        value:
+                          type: string
+                          example: string
+            examples:
+              'Step 3: [fr:am:*] Create a Public OAuth 2.0 Client':
+                value:
+                  advancedOAuth2ClientConfig:
+                    clientUri:
+                      inherited: true
+                      value:
+                      - 'Unknown Type: any'
+                    contacts:
+                      inherited: true
+                      value:
+                      - 'Unknown Type: any'
+                    descriptions:
+                      inherited: true
+                      value:
+                      - 'Unknown Type: any'
+                    grantTypes:
+                      inherited: false
+                      value:
+                      - authorization_code
+                      - implicit
+                      - password
+                      - client_credentials
+                      - refresh_token
+                      - urn:ietf:params:oauth:grant-type:uma-ticket
+                      - urn:ietf:params:oauth:grant-type:device_code
+                      - urn:ietf:params:oauth:grant-type:saml2-bearer
+                      - urn:ietf:params:oauth:grant-type:jwt-bearer
+                      - urn:openid:params:grant-type:ciba
+                    isConsentImplied:
+                      inherited: true
+                      value: true
+                    logoUri:
+                      inherited: true
+                      value:
+                      - 'Unknown Type: any'
+                    mixUpMitigation:
+                      inherited: true
+                      value: true
+                    name:
+                      inherited: true
+                      value:
+                      - 'Unknown Type: any'
+                    policyUri:
+                      inherited: true
+                      value:
+                      - 'Unknown Type: any'
+                    requestUris:
+                      inherited: true
+                      value:
+                      - 'Unknown Type: any'
+                    responseTypes:
+                    - code
+                    - token
+                    sectorIdentifierUri:
+                      inherited: true
+                      value: string
+                    subjectType:
+                      inherited: true
+                      value: string
+                    tokenEndpointAuthMethod:
+                      inherited: true
+                      value: string
+                    updateAccessToken:
+                      inherited: true
+                      value: string
+                  coreOAuth2ClientConfig:
+                    accessTokenLifetime:
+                      inherited: true
+                      value: 0
+                    agentgroup: ''
+                    authorizationCodeLifetime:
+                      inherited: true
+                      value: 0
+                    clientName:
+                      inherited: true
+                      value:
+                      - 'Unknown Type: any'
+                    clientType:
+                      inherited: false
+                      value: Public
+                    defaultScopes:
+                      inherited: true
+                      value:
+                      - 'Unknown Type: any'
+                    loopbackInterfaceRedirection:
+                      inherited: true
+                      value: true
+                    redirectionUris:
+                      inherited: false
+                      value:
+                      - https://httpbin.org/anything
+                    refreshTokenLifetime:
+                      inherited: true
+                      value: 0
+                    scopes:
+                      inherited: false
+                      value:
+                      - write
+                      - read
+                      - share
+                      - print
+                      - copy
+                      - delete
+                      - manage
+                      - edit
+                    status:
+                      inherited: false
+                      value: Active
+                    userpassword: "{{postmanClientSecret}}"
+                  coreOpenIDClientConfig:
+                    claims:
+                      inherited: true
+                      value:
+                      - 'Unknown Type: any'
+                    clientSessionUri:
+                      inherited: true
+                      value: string
+                    defaultAcrValues:
+                      inherited: true
+                      value:
+                      - 'Unknown Type: any'
+                    defaultMaxAge:
+                      inherited: true
+                      value: 0
+                    defaultMaxAgeEnabled:
+                      inherited: true
+                      value: true
+                    jwtTokenLifetime:
+                      inherited: true
+                      value: 0
+                    postLogoutRedirectUri:
+                      inherited: true
+                      value:
+                      - 'Unknown Type: any'
+                  coreUmaClientConfig:
+                    claimsRedirectionUris:
+                      inherited: true
+                      value:
+                      - 'Unknown Type: any'
+                  signEncOAuth2ClientConfig:
+                    clientJwtPublicKey:
+                      inherited: true
+                      value: string
+                    idTokenEncryptionAlgorithm:
+                      inherited: true
+                      value: string
+                    idTokenEncryptionEnabled:
+                      inherited: true
+                      value: true
+                    idTokenEncryptionMethod:
+                      inherited: true
+                      value: string
+                    idTokenPublicEncryptionKey:
+                      inherited: true
+                      value: string
+                    idTokenSignedResponseAlg:
+                      inherited: true
+                      value: string
+                    jwkSet:
+                      inherited: true
+                      value: string
+                    jwkStoreCacheMissCacheTime:
+                      inherited: true
+                      value: 0
+                    jwksCacheTimeout:
+                      inherited: true
+                      value: 0
+                    jwksUri:
+                      inherited: true
+                      value: string
+                    mTLSCertificateBoundAccessTokens:
+                      inherited: true
+                      value: true
+                    mTLSSubjectDN:
+                      inherited: true
+                      value: string
+                    mTLSTrustedCert:
+                      inherited: true
+                      value: string
+                    publicKeyLocation:
+                      inherited: true
+                      value: string
+                    requestParameterEncryptedAlg:
+                      inherited: true
+                      value: string
+                    requestParameterEncryptedEncryptionAlgorithm:
+                      inherited: true
+                      value: string
+                    requestParameterSignedAlg:
+                      inherited: true
+                      value: string
+                    tokenEndpointAuthSigningAlgorithm:
+                      inherited: true
+                      value: string
+                    tokenIntrospectionEncryptedResponseAlg:
+                      inherited: true
+                      value: string
+                    tokenIntrospectionEncryptedResponseEncryptionAlgorithm:
+                      inherited: true
+                      value: string
+                    tokenIntrospectionResponseFormat:
+                      inherited: true
+                      value: string
+                    tokenIntrospectionSignedResponseAlg:
+                      inherited: true
+                      value: string
+                    userinfoEncryptedResponseAlg:
+                      inherited: true
+                      value: string
+                    userinfoEncryptedResponseEncryptionAlgorithm:
+                      inherited: true
+                      value: string
+                    userinfoResponseFormat:
+                      inherited: true
+                      value: string
+                    userinfoSignedResponseAlg:
+                      inherited: true
+                      value: string
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearerAuth: []
+    parameters:
+    - name: realm
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: postmanPublicClientId
+      in: path
+      required: true
+      schema:
+        type: string
+  "/managed/alpha_user":
+    post:
+      tags:
+      - Prerequisites
+      summary: 'Step 4: [fr:idm:*] Create a Demo Managed Identity in the Alpha realm'
+      description: Create a demonstration `alpha_user` in the Alpha realm. A number
+        of requests in the Postman Collection require this user to be present, for
+        example the *Intelligent Access* section.
+      operationId: step4FrIdmCreateADemoManagedIdentityInTheAlphaRealm
+      parameters:
+      - name: _action
+        in: query
+        schema:
+          type: string
+          example: create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                givenName:
+                  type: string
+                  example: Postman
+                mail:
+                  type: string
+                  example: "{{postmanDemoEmail}}"
+                password:
+                  type: string
+                  example: "{{postmanDemoPassword}}"
+                sn:
+                  type: string
+                  example: Demo-User
+                telephoneNumber:
+                  type: string
+                  example: 287-449-2681
+                userName:
+                  type: string
+                  example: "{{postmanDemoUsername}}"
+            examples:
+              'Step 4: [fr:idm:*] Create a Demo Managed Identity in the Alpha realm':
+                value:
+                  givenName: Postman
+                  mail: "{{postmanDemoEmail}}"
+                  password: "{{postmanDemoPassword}}"
+                  sn: Demo-User
+                  telephoneNumber: 287-449-2681
+                  userName: "{{postmanDemoUsername}}"
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearerAuth: []
+  "/json{realm}/authenticate":
+    post:
+      tags:
+      - Session Management
+      summary: 'Step 1: Request "Registration" Journey Callback'
+      description: |-
+        The first step is to make a POST call to the `/json/authenticate` endpoint, without providing any credentials, or cookies.
+
+        The Advanced Identity Cloud provides a *Registration* journey out-of-the-box, which is specified in this request.
+
+        Each request that is part of the registration journey uses the same `authId` value to track progress. Ensure the `authId` JWT is sent in each subsequent request, until a session token is issued.
+      operationId: step1RequestRegistrationJourneyCallback
+      parameters:
+      - name: authIndexType
+        in: query
+        schema:
+          type: string
+          example: service
+        description: Allows the request to configure the service (for example, an
+          authentication tree) to use for this request.
+      - name: authIndexValue
+        in: query
+        schema:
+          type: string
+          example: Registration
+        description: |-
+          Specifies the name of the service to use for this request.
+          Override this value using the `amAuthenticationTree` Postman variable.
+      - name: accept-api-version
+        in: header
+        schema:
+          type: string
+          example: resource=2.1, protocol=1.0
+        description: Specifies the version of the `/json/authenticate` endpoint to
+          use.
+      - name: suspendedId
+        in: query
+        schema:
+          type: string
+          example: suspended_id_from_email
+        description: Replace `suspended_id_from_email` with the unique code from the
+          link in the email that was sent to the user, ifthey were found in the Identity
+          Store.
+      - name: x-openam-username
+        in: header
+        schema:
+          type: string
+          example: "{{postmanDemoUsername}}"
+        description: Username for the demo user.
+      - name: x-openam-password
+        in: header
+        schema:
+          type: string
+          example: "{{postmanDemoPassword}}"
+        description: Password for the demo user.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                authId:
+                  type: string
+                  example: "{{authId}}"
+                callbacks:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      _id:
+                        type: number
+                        example: 0
+                      input:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                              example: IDToken1
+                            value:
+                              type: string
+                              example: "{{postmanDemoUsername}}"
+                        example:
+                        - name: IDToken1
+                          value: "{{postmanDemoUsername}}"
+                      output:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                              example: prompt
+                            value:
+                              type: string
+                              example: User Name
+                        example:
+                        - name: prompt
+                          value: User Name
+                      type:
+                        type: string
+                        example: NameCallback
+                  example:
+                  - _id: 0
+                    input:
+                    - name: IDToken1
+                      value: "{{postmanDemoUsername}}"
+                    output:
+                    - name: prompt
+                      value: User Name
+                    type: NameCallback
+                  - _id: 1
+                    input:
+                    - name: IDToken2
+                      value: "{{postmanDemoPassword}}"
+                    output:
+                    - name: prompt
+                      value: Password
+                    type: PasswordCallback
+            examples:
+              'Step 2: Authenticate as Postman demo user':
+                value:
+                  authId: "{{authId}}"
+                  callbacks:
+                  - _id: 0
+                    input:
+                    - name: IDToken1
+                      value: "{{postmanDemoUsername}}"
+                    output:
+                    - name: prompt
+                      value: User Name
+                    type: NameCallback
+                  - _id: 1
+                    input:
+                    - name: IDToken2
+                      value: "{{postmanDemoPassword}}"
+                    output:
+                    - name: prompt
+                      value: Password
+                    type: PasswordCallback
+              'Step 2: Handle "ForgottenUsername" Journey Callback':
+                value:
+                  authId: "{{authId}}"
+                  callbacks:
+                  - input:
+                    - name: IDToken1
+                      value: 0
+                    output:
+                    - name: prompt
+                      value: Succeed?
+                    - name: choices
+                      value:
+                      - 'Yes'
+                      - 'No'
+                    - name: defaultChoice
+                      value: 0
+                    type: ChoiceCallback
+              'Step 2: Handle "Registration" Journey Callback':
+                value:
+                  authId: "{{authId}}"
+                  callbacks:
+                  - input:
+                    - name: IDToken1
+                      value: 0
+                    output:
+                    - name: prompt
+                      value: Succeed?
+                    - name: choices
+                      value:
+                      - 'Yes'
+                      - 'No'
+                    - name: defaultChoice
+                      value: 0
+                    type: ChoiceCallback
+              'Step 2: Handle "ResetPassword" Journey Callback':
+                value:
+                  authId: "{{authId}}"
+                  callbacks:
+                  - input:
+                    - name: IDToken1
+                      value: 0
+                    output:
+                    - name: prompt
+                      value: Succeed?
+                    - name: choices
+                      value:
+                      - 'Yes'
+                      - 'No'
+                    - name: defaultChoice
+                      value: 0
+                    type: ChoiceCallback
+              'Step 2a: Handle Username / Password Callback':
+                value:
+                  authId: "{{authId}}"
+                  callbacks:
+                  - _id: 0
+                    input:
+                    - name: IDToken1
+                      value: "{{postmanDemoUsername}}"
+                    output:
+                    - name: prompt
+                      value: User Name
+                    type: NameCallback
+                  - _id: 1
+                    input:
+                    - name: IDToken2
+                      value: "{{postmanDemoPassword}}"
+                    output:
+                    - name: prompt
+                      value: Password
+                    type: PasswordCallback
+              'Step 2b: Handle Validated Username / Password Callback':
+                value:
+                  authId: "{{authId}}"
+                  callbacks:
+                  - _id: 0
+                    input:
+                    - name: IDToken1
+                      value: "{{postmanDemoUsername}}"
+                    output:
+                    - name: prompt
+                      value: User Name
+                    type: NameCallback
+                  - _id: 1
+                    input:
+                    - name: IDToken2
+                      value: "{{postmanDemoPassword}}"
+                    output:
+                    - name: prompt
+                      value: Password
+                    type: PasswordCallback
+              'Step 2c: Handle Choice Callback':
+                value:
+                  authId: "{{authId}}"
+                  callbacks:
+                  - input:
+                    - name: IDToken1
+                      value: 0
+                    output:
+                    - name: prompt
+                      value: Succeed?
+                    - name: choices
+                      value:
+                      - 'Yes'
+                      - 'No'
+                    - name: defaultChoice
+                      value: 0
+                    type: ChoiceCallback
+              'Step 2d: Handle Text Input Callback':
+                value:
+                  authId: "{{authId}}"
+                  callbacks:
+                  - input:
+                    - name: IDToken1
+                      value: 0
+                    output:
+                    - name: prompt
+                      value: Succeed?
+                    - name: choices
+                      value:
+                      - 'Yes'
+                      - 'No'
+                    - name: defaultChoice
+                      value: 0
+                    type: ChoiceCallback
+              'Step 2e: Handle Device Profile Callback':
+                value:
+                  authId: "{{authId}}"
+                  callbacks:
+                  - input:
+                    - name: IDToken1
+                      value: 0
+                    output:
+                    - name: prompt
+                      value: Succeed?
+                    - name: choices
+                      value:
+                      - 'Yes'
+                      - 'No'
+                    - name: defaultChoice
+                      value: 0
+                    type: ChoiceCallback
+              'Step 2f: Handle Progressive Profile Callback':
+                value:
+                  authId: "{{authId}}"
+                  callbacks:
+                  - input:
+                    - name: IDToken1
+                      value: 0
+                    output:
+                    - name: prompt
+                      value: Succeed?
+                    - name: choices
+                      value:
+                      - 'Yes'
+                      - 'No'
+                    - name: defaultChoice
+                      value: 0
+                    type: ChoiceCallback
+      responses:
+        '200':
+          description: Success. Callback generated by Username and Password collectors,
+            together in a page node. / Success - authentication complete / Success.
+            Callback generated by Username and Password collectors, together in a
+            page node. / Success - authentication complete / Success. Callback generated
+            by Username and Password collectors, together in a page node. / Success.
+            Callback generated by Username and Password collectors, together in a
+            page node. / Success - authentication complete / Success. Callback generated
+            by Username and Password collectors, together in a page node. / Success.
+            Callback generated by Username and Password collectors, together in a
+            page node. / Success - authentication complete / Success - authentication
+            complete / Success - authentication complete / Success - authentication
+            complete / Success - authentication complete / Success - authentication
+            complete / Success - authentication complete / Example / Example / Example
+            / Example / Example / Example
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, no-store, must-revalidate
+            Content-API-Version:
+              schema:
+                type: string
+                example: resource=2.1
+            Content-Length:
+              schema:
+                type: string
+                example: '167'
+            Date:
+              schema:
+                type: string
+                example: Thu, 13 Aug 2020 12:20:51 GMT
+            Expires:
+              schema:
+                type: string
+                example: '0'
+            Pragma:
+              schema:
+                type: string
+                example: no-cache
+            Set-Cookie:
+              schema:
+                type: string
+                example: iPlanetDirectoryPro=sOpI1RvbCgvlQk.*AAJTSQACMDEA.*; Path=/;
+                  Domain=example.com; HttpOnly
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            X-Frame-Options:
+              schema:
+                type: string
+                example: SAMEORIGIN
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  authId:
+                    type: string
+                    example: eyJ0eXAizI1NiJ9...eyJTkNVS-36NdGPz0ldtTxs
+                  callbacks:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        _id:
+                          type: number
+                          example: 0
+                        input:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              name:
+                                type: string
+                                example: IDToken1
+                              value:
+                                type: string
+                                example: ''
+                          example:
+                          - name: IDToken1
+                            value: ''
+                        output:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              name:
+                                type: string
+                                example: prompt
+                              value:
+                                type: string
+                                example: User Name
+                          example:
+                          - name: prompt
+                            value: User Name
+                        type:
+                          type: string
+                          example: NameCallback
+                    example:
+                    - _id: 0
+                      input:
+                      - name: IDToken1
+                        value: ''
+                      output:
+                      - name: prompt
+                        value: User Name
+                      type: NameCallback
+                    - _id: 1
+                      input:
+                      - name: IDToken2
+                        value: ''
+                      output:
+                      - name: prompt
+                        value: Password
+                      type: PasswordCallback
+                  realm:
+                    type: string
+                    example: "/"
+                  successUrl:
+                    type: string
+                    example: "/openam/console"
+                  tokenId:
+                    type: string
+                    example: N60dPV99pcqVVI.*AAJTSQACMDEAAANDVFMAAlMxAAA.*
+              examples:
+                Example:
+                  value:
+                    realm: "/"
+                    successUrl: "/openam/console"
+                    tokenId: Qx-LkyIzZYgvoGOoM5iomPXaSfQ.*AAJTSQACMDEAAlNLABxCMGhVUWJ5Q1VObjl6NGRCY0t2OGN0YWplZDA9AAR0eXBlAANDVFMAAlMxAAA.*
+                Success - authentication complete:
+                  value:
+                    realm: "/"
+                    successUrl: "/openam/console"
+                    tokenId: N60dPV99pcqVVI.*AAJTSQACMDEAAANDVFMAAlMxAAA.*
+                Success. Callback generated by Username and Password collectors, together in a page node.:
+                  value:
+                    authId: eyJ0eXAizI1NiJ9...eyJTkNVS-36NdGPz0ldtTxs
+                    callbacks:
+                    - _id: 0
+                      input:
+                      - name: IDToken1
+                        value: ''
+                      output:
+                      - name: prompt
+                        value: User Name
+                      type: NameCallback
+                    - _id: 1
+                      input:
+                      - name: IDToken2
+                        value: ''
+                      output:
+                      - name: prompt
+                        value: Password
+                      type: PasswordCallback
+      security:
+      - {}
+    parameters:
+    - name: realm
+      in: path
+      required: true
+      schema:
+        type: string
+  "/json{realm}/sessions":
+    post:
+      tags:
+      - Session Management
+      summary: 'Step 3: [User] Get Session Info'
+      description: "Once the user has completed all the required callbacks, they are
+        issued their session token. You can use the token to obtain information about
+        the session.\n\nTo obtain information about a session, perform an HTTP POST
+        to the `/json/sessions/` endpoint, using the `getSessionInfo` action. \n\nThe
+        endpoint returns information about the provided session token by default.
+        \n\n> Tip: \n>\n> To get information about a different session token, include
+        it in the POST body, as the value of the `tokenId` parameter."
+      operationId: step3UserGetSessionInfo
+      parameters:
+      - name: _action
+        in: query
+        schema:
+          type: string
+          example: getSessionInfo
+        description: Specifies a request to get information about a session, such
+          as idle times.
+      - name: "{{cookiename}}"
+        in: header
+        schema:
+          type: string
+          example: "{{demoSSOToken}}"
+        description: Specifies the session token to query. To obtain information about
+          a different token, specify it in the `tokenId` parameter of the POST body.
+      - name: accept-api-version
+        in: header
+        schema:
+          type: string
+          example: resource=2.0, protocol=1.0
+        description: Specifies the version of the `/json/sessions` endpoint to use.
+      - name: _fields
+        in: query
+        schema:
+          type: string
+          example: ''
+        description: Optional parameter containing a comma separated list of field
+          references specifying which fields of the targeted JSON resource should
+          be returned.
+      - name: _prettyPrint
+        in: query
+        schema:
+          type: string
+          example: 'true'
+        description: Optional parameter requesting that the returned JSON resource
+          content should be formatted to be more human readable.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tokenId:
+                  type: string
+                  example: "<string>"
+            examples:
+              'Step 3: [User] Read session info and store ID':
+                value:
+                  tokenId: "<string>"
+          text/plain:
+            examples:
+              'Step 3: [User] Read session info':
+                value: ''
+              'Step 3: [User] Read session info and store ID':
+                value: ''
+              'Step 4: [User] Read session info and reset idle time':
+                value: ''
+              'Step 5: [User] Read session properties':
+                value: ''
+              'Step 6: [User] Refresh session':
+                value: ''
+              'Step 7: [User] Validate session':
+                value: ''
+              Step 8. [User] Logout session:
+                value: ''
+      responses:
+        '200':
+          description: Success / Success
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, no-store, must-revalidate
+            Content-API-Version:
+              schema:
+                type: string
+                example: resource=2.2
+            Content-Length:
+              schema:
+                type: string
+                example: '302'
+            Date:
+              schema:
+                type: string
+                example: Wed, 12 Aug 2020 14:23:25 GMT
+            Expires:
+              schema:
+                type: string
+                example: '0'
+            Pragma:
+              schema:
+                type: string
+                example: no-cache
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            X-Frame-Options:
+              schema:
+                type: string
+                example: SAMEORIGIN
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  latestAccessTime:
+                    type: string
+                    example: '2020-08-12T14:23:23Z'
+                  maxIdleExpirationTime:
+                    type: string
+                    example: '2020-08-12T14:53:23Z'
+                  maxSessionExpirationTime:
+                    type: string
+                    example: '2020-08-12T16:23:22Z'
+                  properties:
+                    type: object
+                    properties:
+                      AMCtxId:
+                        type: string
+                        example: e2fe9cef-dce1-41e4-ab15-0c85a88bf8cd-66167
+                  realm:
+                    type: string
+                    example: "/"
+                  universalId:
+                    type: string
+                    example: id=demo,ou=user,dc=openam,dc=forgerock,dc=org
+                  username:
+                    type: string
+                    example: demo
+              examples:
+                Success:
+                  value:
+                    latestAccessTime: '2020-08-12T14:23:23Z'
+                    maxIdleExpirationTime: '2020-08-12T14:53:23Z'
+                    maxSessionExpirationTime: '2020-08-12T16:23:22Z'
+                    properties:
+                      AMCtxId: e2fe9cef-dce1-41e4-ab15-0c85a88bf8cd-66167
+                    realm: "/"
+                    universalId: id=demo,ou=user,dc=openam,dc=forgerock,dc=org
+                    username: demo
+      security:
+      - {}
+    parameters:
+    - name: realm
+      in: path
+      required: true
+      schema:
+        type: string
+  "/json{realm}/sessions/":
+    post:
+      tags:
+      - Intelligent Access
+      summary: 'Step 4: [User] Logout'
+      description: "To invalidate, or log out a session, perform an HTTP POST to the
+        `/json/sessions/` endpoint using the `logout` action. \n\nThe endpoint invalidates
+        the session identified by the provided session token.\n\n> Tip:\n>\n> To invalidate
+        a different session token, include it in the POST body as the value of the
+        `tokenId` parameter."
+      operationId: step4UserLogout
+      parameters:
+      - name: _action
+        in: query
+        schema:
+          type: string
+          example: logout
+        description: Specifies a request to log out, or invalidate, a session.
+      - name: "{{cookiename}}"
+        in: header
+        schema:
+          type: string
+          example: "{{demoSSOToken}}"
+        description: Specifies the session token to log out. To terminate a different
+          session, specify its session token in the `tokenId` parameter of the POST
+          body.
+      - name: accept-api-version
+        in: header
+        schema:
+          type: string
+          example: resource=3.1, protocol=1.0
+        description: Specifies the version of the /json/sessions endpoint to use.
+      responses:
+        '200':
+          description: Success
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, no-store, must-revalidate
+            Content-API-Version:
+              schema:
+                type: string
+                example: resource=3.2
+            Content-Length:
+              schema:
+                type: string
+                example: '36'
+            Date:
+              schema:
+                type: string
+                example: Wed, 12 Aug 2020 14:23:45 GMT
+            Expires:
+              schema:
+                type: string
+                example: '0'
+            Pragma:
+              schema:
+                type: string
+                example: no-cache
+            Set-Cookie:
+              schema:
+                type: string
+                example: amlbcookie=LOGOUT; Expires=Thu, 01 Jan 1970 00:00:10 GMT;
+                  Path=/; Domain=example.com
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            X-Frame-Options:
+              schema:
+                type: string
+                example: SAMEORIGIN
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: string
+                    example: Successfully logged out
+              examples:
+                Success:
+                  value:
+                    result: Successfully logged out
+      security:
+      - {}
+    parameters:
+    - name: realm
+      in: path
+      required: true
+      schema:
+        type: string
+  "/json{realm}/users/{demoUserId}/oauth2/applications":
+    get:
+      tags:
+      - Identity Profiles
+      - Authorized OAuth 2.0 Clients
+      summary: 'Step 1: [User] Query Authorized OAuth 2.0 Clients'
+      description: Get a list of the applications that have been granted OAuth 2.0
+        access. Only `_queryFilter=true` is supported.
+      operationId: step1UserQueryAuthorizedOauth20Clients
+      parameters:
+      - name: _fields
+        in: query
+        schema:
+          type: string
+          example: ''
+        description: Optional parameter containing a comma separated list of field
+          references specifying which fields of the targeted JSON resource should
+          be returned.
+      - name: _prettyPrint
+        in: query
+        schema:
+          type: string
+          example: 'true'
+        description: Optional parameter requesting that the returned JSON resource
+          content should be formatted to be more human readable.
+      - name: _queryFilter
+        in: query
+        schema:
+          type: string
+          example: 'true'
+        description: "(Required) "
+      - name: accept-api-version
+        in: header
+        schema:
+          type: string
+          example: resource=1.1
+        description: "(Required) "
+      - name: "{{cookiename}}"
+        in: header
+        schema:
+          type: string
+          example: "{{demoSSOToken}}"
+      responses:
+        '200':
+          description: ''
+      security:
+      - {}
+    parameters:
+    - name: realm
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: demoUserId
+      in: path
+      required: true
+      schema:
+        type: string
+        example: "{{demoUserId}}"
+  "/json{realm}/users/{user_ID}/oauth2/applications/{oauth2App_ID}":
+    delete:
+      tags:
+      - Identity Profiles
+      - Authorized OAuth 2.0 Clients
+      summary: 'Step 2: [User] Delete Authorized OAuth 2.0 Client'
+      description: Delete the tokens for the specified client ID.
+      operationId: step2UserDeleteAuthorizedOauth20Client
+      parameters:
+      - name: _fields
+        in: query
+        schema:
+          type: string
+          example: ''
+        description: Optional parameter containing a comma separated list of field
+          references specifying which fields of the targeted JSON resource should
+          be returned.
+      - name: _prettyPrint
+        in: query
+        schema:
+          type: string
+          example: 'true'
+        description: Optional parameter requesting that the returned JSON resource
+          content should be formatted to be more human readable.
+      - name: accept-api-version
+        in: header
+        schema:
+          type: string
+          example: resource=1.1
+        description: "(Required) "
+      - name: "{{cookiename}}"
+        in: header
+        schema:
+          type: string
+          example: "{{demoSSOToken}}"
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              examples:
+                Success:
+                  value: ''
+      security:
+      - {}
+    parameters:
+    - name: realm
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: user_ID
+      in: path
+      required: true
+      schema:
+        type: string
+        example: "{{demoUserId}}"
+    - name: oauth2App_ID
+      in: path
+      required: true
+      schema:
+        type: string
+        example: "{{oauth2App}}"
+  "/json{realm}/users/{user}/devices/profile":
+    get:
+      tags:
+      - Identity Profiles
+      - Devices
+      - Trusted Device Profiles
+      summary: 'Step 1: [User] Query Trusted Device Profiles'
+      description: Query the user devices
+      operationId: step1UserQueryTrustedDeviceProfiles
+      parameters:
+      - name: _fields
+        in: query
+        schema:
+          type: string
+          example: ''
+        description: Optional parameter containing a comma separated list of field
+          references specifying which fields of the targeted JSON resource should
+          be returned.
+      - name: _prettyPrint
+        in: query
+        schema:
+          type: string
+          example: 'true'
+        description: Optional parameter requesting that the returned JSON resource
+          content should be formatted to be more human readable.
+      - name: _queryFilter
+        in: query
+        schema:
+          type: string
+          example: 'true'
+        description: "(Required) "
+      - name: accept-api-version
+        in: header
+        schema:
+          type: string
+          example: resource=1.0
+        description: "(Required) "
+      - name: "{{cookiename}}"
+        in: header
+        schema:
+          type: string
+          example: "{{demoSSOToken}}"
+      responses:
+        '200':
+          description: ''
+      security:
+      - {}
+    parameters:
+    - name: realm
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: user
+      in: path
+      required: true
+      schema:
+        type: string
+        example: "{{demoUserId}}"
+  "/json{realm}/users/{user}/devices/profile/{deviceProfileId}":
+    put:
+      tags:
+      - Identity Profiles
+      - Devices
+      - Trusted Device Profiles
+      summary: 'Step 2: [User] Update Trusted Device Profile'
+      description: Update an existing user device alias
+      operationId: step2UserUpdateTrustedDeviceProfile
+      parameters:
+      - name: _fields
+        in: query
+        schema:
+          type: string
+          example: ''
+        description: Optional parameter containing a comma separated list of field
+          references specifying which fields of the targeted JSON resource should
+          be returned.
+      - name: _prettyPrint
+        in: query
+        schema:
+          type: string
+          example: 'true'
+        description: Optional parameter requesting that the returned JSON resource
+          content should be formatted to be more human readable.
+      - name: accept-api-version
+        in: header
+        schema:
+          type: string
+          example: resource=1.0
+        description: "(Required) "
+      - name: if-match
+        in: header
+        schema:
+          type: string
+          example: "*"
+        description: "(Required) "
+      - name: "{{cookiename}}"
+        in: header
+        schema:
+          type: string
+          example: "{{demoSSOToken}}"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                alias:
+                  type: string
+                  example: Laurence.Hessel14's Device
+            examples:
+              'Step 2: [User] Update Trusted Device Profile':
+                value:
+                  alias: Laurence.Hessel14's Device
+      responses:
+        '200':
+          description: ''
+      security:
+      - {}
+    delete:
+      tags:
+      - Identity Profiles
+      - Devices
+      - Trusted Device Profiles
+      summary: 'Step 3: [fr:am:*] Delete Trusted Device Profile'
+      description: Delete user device
+      operationId: step3FrAmDeleteTrustedDeviceProfile
+      parameters:
+      - name: _fields
+        in: query
+        schema:
+          type: string
+          example: ''
+        description: Optional parameter containing a comma separated list of field
+          references specifying which fields of the targeted JSON resource should
+          be returned.
+      - name: _prettyPrint
+        in: query
+        schema:
+          type: string
+          example: 'true'
+        description: Optional parameter requesting that the returned JSON resource
+          content should be formatted to be more human readable.
+      - name: accept-api-version
+        in: header
+        schema:
+          type: string
+          example: resource=1.0
+        description: "(Required) "
+      - name: if-match
+        in: header
+        schema:
+          type: string
+          example: "<string>"
+        description: "(Required) "
+      - name: "{{cookiename}}"
+        in: header
+        schema:
+          type: string
+          example: "{{demoSSOToken}}"
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearerAuth: []
+    parameters:
+    - name: realm
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: user
+      in: path
+      required: true
+      schema:
+        type: string
+        example: "{{demoUserId}}"
+    - name: deviceProfileId
+      in: path
+      required: true
+      schema:
+        type: string
+        example: "{{deviceProfileId}}"
+  "/json{realm}/users/{user}/devices/2fa/oath":
+    get:
+      tags:
+      - Identity Profiles
+      - Devices
+      - OATH
+      summary: 'Step 1: [User] Query OATH devices'
+      description: Query the user's device profile
+      operationId: step1UserQueryOathDevices
+      parameters:
+      - name: _fields
+        in: query
+        schema:
+          type: string
+          example: ''
+        description: Optional parameter containing a comma separated list of field
+          references specifying which fields of the targeted JSON resource should
+          be returned.
+      - name: _prettyPrint
+        in: query
+        schema:
+          type: string
+          example: 'true'
+        description: Optional parameter requesting that the returned JSON resource
+          content should be formatted to be more human readable.
+      - name: _queryFilter
+        in: query
+        schema:
+          type: string
+          example: 'true'
+        description: "(Required) "
+      - name: accept-api-version
+        in: header
+        schema:
+          type: string
+          example: resource=1.0
+        description: "(Required) "
+      - name: "{{cookiename}}"
+        in: header
+        schema:
+          type: string
+          example: "{{demoSSOToken}}"
+      responses:
+        '200':
+          description: ''
+      security:
+      - {}
+    post:
+      tags:
+      - Identity Profiles
+      - Devices
+      - OATH
+      summary: 'Step 2: [User] Read OATH device "Skip" status'
+      description: Checks if the user's Authenticator OATH module is 'skippable' and
+        returns the result as a boolean
+      operationId: step2UserReadOathDeviceSkipStatus
+      parameters:
+      - name: _fields
+        in: query
+        schema:
+          type: string
+          example: ''
+        description: Optional parameter containing a comma separated list of field
+          references specifying which fields of the targeted JSON resource should
+          be returned.
+      - name: _prettyPrint
+        in: query
+        schema:
+          type: string
+          example: 'true'
+        description: Optional parameter requesting that the returned JSON resource
+          content should be formatted to be more human readable.
+      - name: _action
+        in: query
+        schema:
+          type: string
+          example: check
+        description: "(Required) "
+      - name: accept-api-version
+        in: header
+        schema:
+          type: string
+          example: resource=1.0
+        description: "(Required) "
+      - name: "{{cookiename}}"
+        in: header
+        schema:
+          type: string
+          example: "{{demoSSOToken}}"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+            examples:
+              'Step 3: [fr:am:*] Update OATH device "Skip" status':
+                value:
+                  value: true
+              'Step 4: [fr:am:*] Delete OATH device':
+                value: {}
+          text/plain:
+            examples:
+              'Step 2: [User] Read OATH device "Skip" status':
+                value: ''
+      responses:
+        '200':
+          description: ''
+      security:
+      - {}
+      - bearerAuth: []
+    parameters:
+    - name: realm
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: user
+      in: path
+      required: true
+      schema:
+        type: string
+        example: "{{demoUserId}}"
+      description: "(Required) The identifier for the user for which the request is
+        regarding."
+  "/json{realm}/users/{user}/devices/2fa/push":
+    get:
+      tags:
+      - Identity Profiles
+      - Devices
+      - Push
+      summary: 'Step 1: [User] Query Push devices'
+      description: Query the user's device profile
+      operationId: step1UserQueryPushDevices
+      parameters:
+      - name: _fields
+        in: query
+        schema:
+          type: string
+          example: ''
+        description: Optional parameter containing a comma separated list of field
+          references specifying which fields of the targeted JSON resource should
+          be returned.
+      - name: _prettyPrint
+        in: query
+        schema:
+          type: string
+          example: 'true'
+        description: Optional parameter requesting that the returned JSON resource
+          content should be formatted to be more human readable.
+      - name: _queryFilter
+        in: query
+        schema:
+          type: string
+          example: 'true'
+        description: "(Required) "
+      - name: accept-api-version
+        in: header
+        schema:
+          type: string
+          example: resource=1.0
+        description: "(Required) "
+      - name: "{{cookiename}}"
+        in: header
+        schema:
+          type: string
+          example: "{{demoSSOToken}}"
+      responses:
+        '200':
+          description: ''
+      security:
+      - {}
+    post:
+      tags:
+      - Identity Profiles
+      - Devices
+      - Push
+      summary: 'Step 2: [User] Read Push device "Skip" status'
+      description: Checks if the user's Authenticator Push module is 'skippable' and
+        returns the result as a boolean
+      operationId: step2UserReadPushDeviceSkipStatus
+      parameters:
+      - name: _fields
+        in: query
+        schema:
+          type: string
+          example: ''
+        description: Optional parameter containing a comma separated list of field
+          references specifying which fields of the targeted JSON resource should
+          be returned.
+      - name: _prettyPrint
+        in: query
+        schema:
+          type: string
+          example: 'true'
+        description: Optional parameter requesting that the returned JSON resource
+          content should be formatted to be more human readable.
+      - name: _action
+        in: query
+        schema:
+          type: string
+          example: check
+        description: "(Required) "
+      - name: accept-api-version
+        in: header
+        schema:
+          type: string
+          example: resource=1.0
+        description: "(Required) "
+      - name: "{{cookiename}}"
+        in: header
+        schema:
+          type: string
+          example: "{{demoSSOToken}}"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+            examples:
+              'Step 3: [fr:am:*] Update Push device "Skip" status':
+                value:
+                  value: false
+              'Step 4: [fr:am:*] Delete Push device':
+                value: {}
+          text/plain:
+            examples:
+              'Step 2: [User] Read Push device "Skip" status':
+                value: ''
+      responses:
+        '200':
+          description: ''
+      security:
+      - {}
+      - bearerAuth: []
+    parameters:
+    - name: realm
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: user
+      in: path
+      required: true
+      schema:
+        type: string
+        example: "{{demoUserId}}"
+      description: "(Required) The identifier for the user for which the request is
+        regarding."
+  "/json{realm}/users/{user}/devices/2fa/webauthn":
+    get:
+      tags:
+      - Identity Profiles
+      - Devices
+      - WebAuthn
+      summary: 'Step 1: [User] Query WebAuthn devices'
+      description: Query the user's WebAuthn devices
+      operationId: step1UserQueryWebauthnDevices
+      parameters:
+      - name: _fields
+        in: query
+        schema:
+          type: string
+          example: ''
+        description: Optional parameter containing a comma separated list of field
+          references specifying which fields of the targeted JSON resource should
+          be returned.
+      - name: _prettyPrint
+        in: query
+        schema:
+          type: string
+          example: 'true'
+        description: Optional parameter requesting that the returned JSON resource
+          content should be formatted to be more human readable.
+      - name: _queryFilter
+        in: query
+        schema:
+          type: string
+          example: 'true'
+        description: "(Required) "
+      - name: accept-api-version
+        in: header
+        schema:
+          type: string
+          example: resource=1.0
+        description: "(Required) "
+      - name: "{{cookiename}}"
+        in: header
+        schema:
+          type: string
+          example: "{{demoSSOToken}}"
+      responses:
+        '200':
+          description: ''
+      security:
+      - {}
+    parameters:
+    - name: realm
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: user
+      in: path
+      required: true
+      schema:
+        type: string
+        example: "{{demoUserId}}"
+      description: "(Required) The identifier for the user for which the request is
+        regarding."
+  "/json{realm}/users/{user}/devices/2fa/webauthn/{webAuthnDeviceId}":
+    put:
+      tags:
+      - Identity Profiles
+      - Devices
+      - WebAuthn
+      summary: 'Step 2: [fr:am:*] Update WebAuthn device name'
+      description: Update an existing WebAuthn user device
+      operationId: step2FrAmUpdateWebauthnDeviceName
+      parameters:
+      - name: _fields
+        in: query
+        schema:
+          type: string
+          example: ''
+        description: Optional parameter containing a comma separated list of field
+          references specifying which fields of the targeted JSON resource should
+          be returned.
+      - name: _prettyPrint
+        in: query
+        schema:
+          type: string
+          example: 'true'
+        description: Optional parameter requesting that the returned JSON resource
+          content should be formatted to be more human readable.
+      - name: accept-api-version
+        in: header
+        schema:
+          type: string
+          example: resource=1.0
+        description: "(Required) "
+      - name: "{{cookiename}}"
+        in: header
+        schema:
+          type: string
+          example: "{{demoSSOToken}}"
+      - name: if-match
+        in: header
+        schema:
+          type: string
+          example: "*"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                deviceName:
+                  type: string
+                  example: Laurence.Hessel14's WebAuthn Device
+            examples:
+              'Step 2: [fr:am:*] Update WebAuthn device name':
+                value:
+                  deviceName: Laurence.Hessel14's WebAuthn Device
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearerAuth: []
+    delete:
+      tags:
+      - Identity Profiles
+      - Devices
+      - WebAuthn
+      summary: 'Step 3: [fr:am:*] Delete WebAuthn device'
+      description: Delete WebAuthn user device
+      operationId: step3FrAmDeleteWebauthnDevice
+      parameters:
+      - name: _fields
+        in: query
+        schema:
+          type: string
+          example: ''
+        description: Optional parameter containing a comma separated list of field
+          references specifying which fields of the targeted JSON resource should
+          be returned.
+      - name: _prettyPrint
+        in: query
+        schema:
+          type: string
+          example: 'true'
+        description: Optional parameter requesting that the returned JSON resource
+          content should be formatted to be more human readable.
+      - name: accept-api-version
+        in: header
+        schema:
+          type: string
+          example: resource=1.0
+        description: "(Required) "
+      - name: "{{cookiename}}"
+        in: header
+        schema:
+          type: string
+          example: "{{demoSSOToken}}"
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearerAuth: []
+    parameters:
+    - name: realm
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: user
+      in: path
+      required: true
+      schema:
+        type: string
+        example: "{{demoUserId}}"
+      description: "(Required) The identifier for the user for which the request is
+        regarding."
+    - name: webAuthnDeviceId
+      in: path
+      required: true
+      schema:
+        type: string
+        example: "{{webAuthnDeviceId}}"
+  "/oauth2{realm}/authorize":
+    post:
+      tags:
+      - OAuth 2.0 Flows
+      - Refresh Token Flow
+      summary: 'Step 2: [User] Get Authorization Code'
+      description: 'Get the authorization code by making a call to the authorization
+        server''s authorization endpoint, specifying the SSO token of the user.
+
+        '
+      operationId: step2UserGetAuthorizationCode
+      parameters:
+      - name: "{{cookiename}}"
+        in: header
+        schema:
+          type: string
+          example: "{{demoSSOToken}}"
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                client_id:
+                  type: string
+                  example: "{{postmanConfidentialClientId}}"
+                csrf:
+                  type: string
+                  example: "{{demoSSOToken}}"
+                decision:
+                  type: string
+                  example: allow
+                redirect_uri:
+                  type: string
+                  example: "{{redirect_uri}}"
+                response_type:
+                  type: string
+                  example: code
+                scope:
+                  type: string
+                  example: edit
+            examples:
+              'Step 2: [Demo] Get Authorization Code':
+                value:
+                  client_id: "{{postmanConfidentialClientId}}"
+                  code_challenge: "{{code_challenge}}"
+                  code_challenge_method: S256
+                  csrf: "{{demoSSOToken}}"
+                  decision: allow
+                  redirect_uri: "{{redirect_uri}}"
+                  response_type: code
+                  scope: share
+              'Step 2: [User] Get Access Token':
+                value:
+                  client_id: "{{postmanPublicClientId}}"
+                  csrf: "{{demoSSOToken}}"
+                  decision: allow
+                  redirect_uri: "{{redirect_uri}}"
+                  response_type: token
+                  scope: write
+              'Step 2: [User] Get Authorization Code':
+                value:
+                  client_id: "{{postmanConfidentialClientId}}"
+                  csrf: "{{demoSSOToken}}"
+                  decision: allow
+                  redirect_uri: "{{redirect_uri}}"
+                  response_type: code
+                  scope: edit
+      responses:
+        '200':
+          description: Success - headers captured by HttpBin. / Example / Example
+            - parameters captured by HttpBin
+          headers:
+            Access-Control-Allow-Credentials:
+              schema:
+                type: string
+                example: 'true'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: "*"
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Length:
+              schema:
+                type: string
+                example: '937'
+            Date:
+              schema:
+                type: string
+                example: Thu, 13 Aug 2020 12:21:03 GMT
+            Server:
+              schema:
+                type: string
+                example: gunicorn/19.9.0
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  args:
+                    type: object
+                    properties:
+                      client_id:
+                        type: string
+                        example: forgerockDemoConfidentialClient
+                      code:
+                        type: string
+                        example: oIQFFQ1S5Fxnqs5U_EMWxYEJktQ
+                      iss:
+                        type: string
+                        example: http://openam.example.com:8080/openam/oauth2
+                  data:
+                    type: string
+                    example: ''
+                  files:
+                    type: object
+                    properties: {}
+                  form:
+                    type: object
+                    properties: {}
+                  headers:
+                    type: object
+                    properties:
+                      Accept:
+                        type: string
+                        example: "*/*"
+                      Accept-Encoding:
+                        type: string
+                        example: gzip, deflate, br
+                      Cookie:
+                        type: string
+                        example: amlbcookie=01; iPlanetDirectoryPro=sOpI1RvbCgvlQk.*AAJTSQACMDEA.*
+                      Host:
+                        type: string
+                        example: httpbin.org
+                      Iplanetdirectorypro:
+                        type: string
+                        example: sOpI1RvbCgvlQk.*AAJTSQACMDEA.*
+                      Referer:
+                        type: string
+                        example: http://openam.example.com:8080/openam/oauth2/realms/root/authorize
+                      User-Agent:
+                        type: string
+                        example: PostmanRuntime/7.26.3
+                      X-Amzn-Trace-Id:
+                        type: string
+                        example: Root=1-5f352dc7-0d6bd5fceafcd01e856febd2
+                  json:
+                    nullable: true
+                    example: 
+                  method:
+                    type: string
+                    example: GET
+                  origin:
+                    type: string
+                    example: 5.65.200.229
+                  url:
+                    type: string
+                    example: https://httpbin.org/anything?code=oIQFFQ1S5Fxnqs5U_EMWxYEJktQ&iss=http:%2F%2Fopenam.example.com:8080%2Fopenam%2Foauth2&client_id=forgerockDemoConfidentialClient
+              examples:
+                Example:
+                  value:
+                    args:
+                      client_id: forgerockDemoConfidentialClient
+                      code: rXspXy1Z03nredTwVDo6qCO1I-4
+                      iss: http://openam.example.com:8080/openam/oauth2
+                    data: ''
+                    files: {}
+                    form: {}
+                    headers:
+                      Accept: "*/*"
+                      Accept-Encoding: gzip, deflate, br
+                      Cookie: amlbcookie=01; iPlanetDirectoryPro=sOpI1RvbCgvlQk.*AAJTSQACMDEA.*
+                      Host: httpbin.org
+                      Iplanetdirectorypro: sOpI1RvbCgvlQk.*AAJTSQACMDEA.*
+                      Referer: http://openam.example.com:8080/openam/oauth2/realms/root/authorize
+                      User-Agent: PostmanRuntime/7.26.3
+                      X-Amzn-Trace-Id: Root=1-5f352e89-db9fc460f6fadf84ef688bbc
+                    json: 
+                    method: GET
+                    origin: 5.65.200.229
+                    url: https://httpbin.org/anything?code=rXspXy1Z03nredTwVDo6qCO1I-4&iss=http:%2F%2Fopenam.example.com:8080%2Fopenam%2Foauth2&client_id=forgerockDemoConfidentialClient
+                Example - parameters captured by HttpBin:
+                  value:
+                    args:
+                      client_id: forgerockDemoConfidentialClient
+                      code: TGBSt2LHHruGUU0lAOrrjr08jtA
+                      iss: http://openam.example.com:8080/openam/oauth2
+                    data: ''
+                    files: {}
+                    form: {}
+                    headers:
+                      Accept: "*/*"
+                      Accept-Encoding: gzip, deflate, br
+                      Cookie: amlbcookie=01; iPlanetDirectoryPro=sOpI1RvbCgvlQk.*AAJTSQACMDEA.*
+                      Host: httpbin.org
+                      Referer: http://openam.example.com:8080/openam/oauth2/realms/root/authorize
+                      User-Agent: PostmanRuntime/7.26.3
+                      X-Amzn-Trace-Id: Root=1-5f35302f-6babefe013e7ad28bf1a82f0
+                    json: 
+                    method: GET
+                    origin: 5.65.200.229
+                    url: https://httpbin.org/anything?code=TGBSt2LHHruGUU0lAOrrjr08jtA&iss=http:%2F%2Fopenam.example.com:8080%2Fopenam%2Foauth2&client_id=forgerockDemoConfidentialClient
+                Success - headers captured by HttpBin.:
+                  value:
+                    args:
+                      client_id: forgerockDemoConfidentialClient
+                      code: oIQFFQ1S5Fxnqs5U_EMWxYEJktQ
+                      iss: http://openam.example.com:8080/openam/oauth2
+                    data: ''
+                    files: {}
+                    form: {}
+                    headers:
+                      Accept: "*/*"
+                      Accept-Encoding: gzip, deflate, br
+                      Cookie: amlbcookie=01; iPlanetDirectoryPro=sOpI1RvbCgvlQk.*AAJTSQACMDEA.*
+                      Host: httpbin.org
+                      Referer: http://openam.example.com:8080/openam/oauth2/realms/root/authorize
+                      User-Agent: PostmanRuntime/7.26.3
+                      X-Amzn-Trace-Id: Root=1-5f352dc7-0d6bd5fceafcd01e856febd2
+                    json: 
+                    method: GET
+                    origin: 5.65.200.229
+                    url: https://httpbin.org/anything?code=oIQFFQ1S5Fxnqs5U_EMWxYEJktQ&iss=http:%2F%2Fopenam.example.com:8080%2Fopenam%2Foauth2&client_id=forgerockDemoConfidentialClient
+        '302':
+          description: Example - Location header contains access_token.
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+                example: no-store
+            Content-Length:
+              schema:
+                type: string
+                example: '0'
+            Date:
+              schema:
+                type: string
+                example: Thu, 13 Aug 2020 12:15:18 GMT
+            Location:
+              schema:
+                type: string
+                example: https://httpbin.org/anything#access_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkZW1vIiwiY3RzIjoiT0FVVEgyX1NUQVRFTEVTU19HUkFOVCIsImF1dGhfbGV2ZWwiOjAsImF1ZGl0VHJhY2tpbmdJZCI6IjAzN2YwMmY5LWQ4MjEtNGY3Mi04NTYzLWM1MDUwYzQwZmRjMy01MTM5OSIsImlzcyI6Imh0dHA6Ly9vcGVuYW0uZXhhbXBsZS5jb206ODA4MC9vcGVuYW0vb2F1dGgyIiwidG9rZW5OYW1lIjoiYWNjZXNzX3Rva2VuIiwidG9rZW5fdHlwZSI6IkJlYXJlciIsImF1dGhHcmFudElkIjoiNi1uLU1GLWRLMGJfTng2TnFFQVFCdkVYQ2xzIiwiYXVkIjoiZm9yZ2Vyb2NrRGVtb1B1YmxpY0NsaWVudCIsIm5iZiI6MTU5NzMyMDkxOCwiZ3JhbnRfdHlwZSI6InRva2VuIiwic2NvcGUiOlsid3JpdGUiXSwiYXV0aF90aW1lIjoxNTk3MzIwOTAxLCJyZWFsbSI6Ii8iLCJleHAiOjE1OTczMjQ1MTgsImlhdCI6MTU5NzMyMDkxOCwiZXhwaXJlc19pbiI6MzYwMCwianRpIjoiMlJLWUx2U0IyNUVoVFE3WHhITzBXVFZqa25VIn0.SdLW4L8iZLiTymoL_SJCaGHQ5GmBuYlelcKe-Ou9gwM&iss=http://openam.example.com:8080/openam/oauth2&token_type=Bearer&expires_in=3599&client_id=forgerockDemoPublicClient
+            Pragma:
+              schema:
+                type: string
+                example: no-cache
+            Set-Cookie:
+              schema:
+                type: string
+                example: OAUTH_REQUEST_ATTRIBUTES=DELETED; Expires=Thu, 01 Jan 1970
+                  00:00:00 GMT; Path=/; Domain=example.com; HttpOnly
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            X-Frame-Options:
+              schema:
+                type: string
+                example: SAMEORIGIN
+          content:
+            text/plain:
+              examples:
+                Example - Location header contains access_token.:
+                  value: ''
+      security:
+      - basicAuth: []
+    parameters:
+    - name: realm
+      in: path
+      required: true
+      schema:
+        type: string
+  "/oauth2{realm}/access_token":
+    post:
+      tags:
+      - OAuth 2.0 Flows
+      - Refresh Token Flow
+      summary: 'Step 3: [User] Exchange the Authorization Code for an Access Token'
+      description: 'Authenticate with the authorization server using the details of
+        the confidential client and the authorization code recieved in the previous
+        call.
+
+        '
+      operationId: step3UserExchangeTheAuthorizationCodeForAnAccessToken
+      parameters:
+      - name: "{{cookiename}}"
+        in: header
+        schema:
+          type: string
+          example: "{{demoSSOToken}}"
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                client_id:
+                  type: string
+                  example: "{{postmanConfidentialClientId}}"
+                client_secret:
+                  type: string
+                  example: "{{postmanClientSecret}}"
+                grant_type:
+                  type: string
+                  example: refresh_token
+                refresh_token:
+                  type: string
+                  example: "{{refresh_token}}"
+                scope:
+                  type: string
+                  example: edit
+            examples:
+              'Step 1: Get Access Token as a Confidential Client':
+                value:
+                  client_id: "{{postmanConfidentialClientId}}"
+                  client_secret: "{{postmanClientSecret}}"
+                  grant_type: client_credentials
+                  scope: print
+              'Step 1: Get Access Token as a Demo User':
+                value:
+                  client_id: "{{postmanConfidentialClientId}}"
+                  client_secret: "{{postmanClientSecret}}"
+                  grant_type: password
+                  password: "{{postmanDemoPassword}}"
+                  scope: write
+                  username: "{{postmanDemoUsername}}"
+              'Step 3: [Demo] Exchange the Authorization Code for an Access Token':
+                value:
+                  client_id: "{{postmanConfidentialClientId}}"
+                  client_secret: "{{postmanClientSecret}}"
+                  code: "{{authorization_code}}"
+                  code_verifier: "{{code_verifier}}"
+                  grant_type: authorization_code
+                  redirect_uri: "{{redirect_uri}}"
+              'Step 3: [User] Exchange the Authentication Code for an Access Token':
+                value:
+                  client_id: "{{postmanConfidentialClientId}}"
+                  client_secret: "{{postmanClientSecret}}"
+                  code: "{{authorization_code}}"
+                  grant_type: authorization_code
+                  redirect_uri: "{{redirect_uri}}"
+              'Step 3: [User] Exchange the Authorization Code for an Access Token':
+                value:
+                  client_id: "{{postmanConfidentialClientId}}"
+                  client_secret: "{{postmanClientSecret}}"
+                  code: "{{authorization_code}}"
+                  grant_type: authorization_code
+                  redirect_uri: "{{redirect_uri}}"
+              'Step 4: [User] Poll for Authorization':
+                value:
+                  client_id: "{{postmanPublicClientId}}"
+                  code: "{{device_code}}"
+                  code_verifier: "{{code_verifier}}"
+                  grant_type: http://oauth.net/grant_type/device/1.0
+              'Step 4: [User] Refresh the Access Token':
+                value:
+                  client_id: "{{postmanConfidentialClientId}}"
+                  client_secret: "{{postmanClientSecret}}"
+                  grant_type: refresh_token
+                  refresh_token: "{{refresh_token}}"
+                  scope: edit
+      responses:
+        '200':
+          description: Example / Example / Example / Example / Example / Example /
+            Example / Example - new access and refresh tokens
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+                example: no-store
+            Content-Length:
+              schema:
+                type: string
+                example: '1627'
+            Date:
+              schema:
+                type: string
+                example: Thu, 13 Aug 2020 12:21:50 GMT
+            Pragma:
+              schema:
+                type: string
+                example: no-cache
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            X-Frame-Options:
+              schema:
+                type: string
+                example: SAMEORIGIN
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                    example: eyJ0eXAiJ9.eyJzdWIiOiJkZPXXcM
+                  expires_in:
+                    type: number
+                    example: 3599
+                  refresh_token:
+                    type: string
+                    example: eyJ0eXAiOiJKV1QiLC.eyl0VHJXpdhFiWDw
+                  scope:
+                    type: string
+                    example: write
+                  token_type:
+                    type: string
+                    example: Bearer
+              examples:
+                Example:
+                  value:
+                    access_token: eyJ0eXAiJ9.eyJzdWIiOiJkZPXXcM
+                    expires_in: 3599
+                    refresh_token: eyJ0eXAiOiJKV1QiLC.eyl0VHJXpdhFiWDw
+                    scope: edit
+                    token_type: Bearer
+                Example - new access and refresh tokens:
+                  value:
+                    access_token: eyJ0eXAiOiJKV1.cyI6Imh0dHA6Ly9vcGVuYW0uZ
+                    expires_in: 3599
+                    refresh_token: eyJ0CJhbGciOiJ.NzgxNCIsImlzcyI6Imh0dH
+                    scope: edit
+                    token_type: Bearer
+        '400':
+          description: Example - polling too quickly
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+                example: no-store
+            Connection:
+              schema:
+                type: string
+                example: close
+            Content-Length:
+              schema:
+                type: string
+                example: '103'
+            Date:
+              schema:
+                type: string
+                example: Thu, 13 Aug 2020 12:20:00 GMT
+            Pragma:
+              schema:
+                type: string
+                example: no-cache
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            X-Frame-Options:
+              schema:
+                type: string
+                example: SAMEORIGIN
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: slow_down
+                  error_description:
+                    type: string
+                    example: The polling interval has not elapsed since the last request
+              examples:
+                Example - polling too quickly:
+                  value:
+                    error: slow_down
+                    error_description: The polling interval has not elapsed since
+                      the last request
+      security:
+      - {}
+    parameters:
+    - name: realm
+      in: path
+      required: true
+      schema:
+        type: string
+  "/oauth2{realm}/introspect":
+    post:
+      tags:
+      - OAuth 2.0 Flows
+      - Device Flow with PKCE
+      summary: 'Step 4: Introspect the Access Token'
+      description: Retrieve metadata about the active access token, such as, approved
+        scopes, the user that authorized the token, and the expiry time.
+      operationId: step4IntrospectTheAccessToken
+      parameters:
+      - name: "{{cookiename}}"
+        in: header
+        schema:
+          type: string
+          example: "{{demoSSOToken}}"
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                client_id:
+                  type: string
+                  example: "{{postmanPublicClientId}}"
+                token:
+                  type: string
+                  example: "{{access_token}}"
+            examples:
+              'Step 2: Introspect the Access Token ':
+                value:
+                  client_id: "{{postmanConfidentialClientId}}"
+                  client_secret: "{{postmanClientSecret}}"
+                  token: "{{access_token}}"
+              'Step 3: Introspect the Access Token':
+                value:
+                  client_id: "{{postmanPublicClientId}}"
+                  token: "{{implicitGrantAccessToken}}"
+              'Step 4: Introspect the Access Token':
+                value:
+                  client_id: "{{postmanConfidentialClientId}}"
+                  client_secret: "{{postmanClientSecret}}"
+                  token: "{{access_token}}"
+              'Step 5: Introspect the Access Token':
+                value:
+                  client_id: "{{postmanPublicClientId}}"
+                  token: "{{access_token}}"
+      responses:
+        '200':
+          description: Example / Example / Example / Example / Example / Example /
+            Example
+          headers:
+            Content-Length:
+              schema:
+                type: string
+                example: '346'
+            Date:
+              schema:
+                type: string
+                example: Thu, 13 Aug 2020 12:20:17 GMT
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            X-Frame-Options:
+              schema:
+                type: string
+                example: SAMEORIGIN
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  active:
+                    type: boolean
+                    example: true
+                  auditTrackingId:
+                    type: string
+                    example: 037f02f9-d821-4f72-8563-c5050c40fdc3-49716
+                  authGrantId:
+                    type: string
+                    example: KrTzIkhIQNqgkrcQBIoGu57eNFE
+                  auth_level:
+                    type: number
+                    example: 0
+                  client_id:
+                    type: string
+                    example: forgerockDemoConfidentialClient
+                  exp:
+                    type: number
+                    example: 1597324266
+                  expires_in:
+                    type: number
+                    example: 3600
+                  iss:
+                    type: string
+                    example: http://openam.example.com:8080/openam/oauth2
+                  realm:
+                    type: string
+                    example: "/"
+                  scope:
+                    type: string
+                    example: write
+                  sub:
+                    type: string
+                    example: demo
+                  token_type:
+                    type: string
+                    example: Bearer
+                  user_id:
+                    type: string
+                    example: demo
+              examples:
+                Example:
+                  value:
+                    active: true
+                    auditTrackingId: 037f02f9-d821-4f72-8563-c5050c40fdc3-53256
+                    authGrantId: bdtxHp1kka6iin4Q2KpNgCfgcVs
+                    auth_level: 0
+                    client_id: forgerockDemoPublicClient
+                    exp: 1597324784
+                    expires_in: 3600
+                    iss: http://openam.example.com:8080/openam/oauth2
+                    realm: "/"
+                    scope: manage
+                    sub: demo
+                    token_type: Bearer
+                    user_id: demo
+    parameters:
+    - name: realm
+      in: path
+      required: true
+      schema:
+        type: string
+  "/oauth2{realm}/device/code":
+    post:
+      tags:
+      - OAuth 2.0 Flows
+      - Device Flow with PKCE
+      summary: 'Step 2: [User] Get User Code and Device Code'
+      description: "Receive a user code and a device code, which can be used to provide
+        consent.\n\n"
+      operationId: step2UserGetUserCodeAndDeviceCode
+      parameters:
+      - name: "{{cookiename}}"
+        in: header
+        schema:
+          type: string
+          example: "{{demoSSOToken}}"
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                client_id:
+                  type: string
+                  example: "{{postmanPublicClientId}}"
+                code_challenge:
+                  type: string
+                  example: "{{code_challenge}}"
+                code_challenge_method:
+                  type: string
+                  example: S256
+                response_type:
+                  type: string
+                  example: device_code
+                scope:
+                  type: string
+                  example: manage
+            examples:
+              'Step 2: [User] Get User Code and Device Code':
+                value:
+                  client_id: "{{postmanPublicClientId}}"
+                  code_challenge: "{{code_challenge}}"
+                  code_challenge_method: S256
+                  response_type: device_code
+                  scope: manage
+      responses:
+        '200':
+          description: Example / Example
+          headers:
+            Content-Length:
+              schema:
+                type: string
+                example: '610'
+            Date:
+              schema:
+                type: string
+                example: Thu, 13 Aug 2020 12:19:08 GMT
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            X-Frame-Options:
+              schema:
+                type: string
+                example: SAMEORIGIN
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  device_code:
+                    type: string
+                    example: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJodHRwOi8vb3BlbmFtLmV4YW1wbGUuY29tOjgwODAvb3BlbmFtL29hdXRoMiIsIm5iZiI6MTU5NzMyMTA2NSwidXNlcl9jb2RlIjoiS05wZXNMY0UiLCJpc3MiOiJodHRwOi8vb3BlbmFtLmV4YW1wbGUuY29tOjgwODAvb3BlbmFtL29hdXRoMiIsImV4cCI6MTU5NzMyMTM2NSwiaWF0IjoxNTk3MzIxMDY1LCJqdGkiOiJmNGM1NDFlYS0wZmQ3LTQzN2YtYjY2Zi0zMGJlZGY2MDU0YzEifQ.ykCohgneHtyxy4MYkP8CrwTQpSp4fpZrulOW7xKXWEk
+                  expires_in:
+                    type: number
+                    example: 300
+                  interval:
+                    type: number
+                    example: 5
+                  user_code:
+                    type: string
+                    example: KNpesLcE
+                  verification_uri:
+                    type: string
+                    example: http://openam.example.com:8080/openam/oauth2/device/user
+                  verification_url:
+                    type: string
+                    example: http://openam.example.com:8080/openam/oauth2/device/user
+              examples:
+                Example:
+                  value:
+                    device_code: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJodHRwOi8vb3BlbmFtLmV4YW1wbGUuY29tOjgwODAvb3BlbmFtL29hdXRoMiIsIm5iZiI6MTU5NzMyMTE0OCwidXNlcl9jb2RlIjoieDNXMkpFRkoiLCJpc3MiOiJodHRwOi8vb3BlbmFtLmV4YW1wbGUuY29tOjgwODAvb3BlbmFtL29hdXRoMiIsImV4cCI6MTU5NzMyMTQ0OCwiaWF0IjoxNTk3MzIxMTQ4LCJqdGkiOiIxYWI0MTE5Yy0yYjE4LTQxYWYtYjZjMC1iNTRmZTQxZWZhNjEifQ.gCoWICyPwJhD7LshgpfLpc9zEt6iUrsjmbGv6yk2kW0
+                    expires_in: 300
+                    interval: 5
+                    user_code: x3W2JEFJ
+                    verification_uri: http://openam.example.com:8080/openam/oauth2/device/user
+                    verification_url: http://openam.example.com:8080/openam/oauth2/device/user
+    parameters:
+    - name: realm
+      in: path
+      required: true
+      schema:
+        type: string
+  "/oauth2{realm}/device/user":
+    post:
+      tags:
+      - OAuth 2.0 Flows
+      - Device Flow with PKCE
+      summary: 'Step 3: Grant Consent Using the User Code'
+      description: Grants consent using the user code recieved in the previous call
+        to allow the client device to access resources.
+      operationId: step3GrantConsentUsingTheUserCode
+      parameters:
+      - name: "{{cookiename}}"
+        in: header
+        schema:
+          type: string
+          example: "{{demoSSOToken}}"
+        description: SSO token to protect against cross-site request forgery.
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                csrf:
+                  type: string
+                  example: "{{demoSSOToken}}"
+                decision:
+                  type: string
+                  example: allow
+                user_code:
+                  type: string
+                  example: "{{user_code}}"
+            examples:
+              'Step 3: Grant Consent Using the User Code':
+                value:
+                  csrf: "{{demoSSOToken}}"
+                  decision: allow
+                  user_code: "{{user_code}}"
+              'Step 3: [User] Grant Consent Using the User Code':
+                value:
+                  csrf: "{{demoSSOToken}}"
+                  decision: allow
+                  user_code: "{{user_code}}"
+      responses:
+        '200':
+          description: 'Example - Page contains "done: true" / Example - page contains
+            "done: true"'
+          headers:
+            Content-Length:
+              schema:
+                type: string
+                example: '969'
+            Date:
+              schema:
+                type: string
+                example: Thu, 13 Aug 2020 12:19:21 GMT
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            X-Frame-Options:
+              schema:
+                type: string
+                example: SAMEORIGIN
+          content:
+            text/plain:
+              examples:
+                'Example - Page contains "done: true"':
+                  value: "<!DOCTYPE html>\n<!--\n  Copyright 2015-2018 ForgeRock AS.
+                    All Rights Reserved\n \n  Use of this code requires a commercial
+                    software license with ForgeRock AS.\n  or with one of its affiliates.
+                    All use shall be exclusively subject\n  to such license between
+                    the licensee and ForgeRock AS.\n-->\n<html lang=\"en\">\n    <head>\n
+                    \       <meta charset=\"utf-8\">\n        <meta http-equiv=\"X-UA-Compatible\"
+                    content=\"IE=edge\">\n        <meta name=\"viewport\" content=\"width=device-width,
+                    initial-scale=1\">\n        <meta name=\"description\" content=\"OAuth2
+                    Authorization\">\n        <title>OAuth2 Authorization Server</title>\n
+                    \   </head>\n    <body style=\"display:none\">\n        <div id=\"wrapper\">Loading...</div>\n
+                    \       <footer id=\"footer\" class=\"footer\"></footer>\n        <script
+                    type=\"text/javascript\">\n  pageData = {\n      locale: \"en_GB\",\n
+                    \     baseUrl : \"http://openam.example.com:8080/openam/XUI/\",\n
+                    \     realm : \"\\//XUI\",\n      done: true\n  };\n</script>\n
+                    \       <script src=\"http://openam.example.com:8080/openam/XUI/main-device.js\"></script>\n
+                    \   </body>\n</html>"
+                'Example - page contains "done: true"':
+                  value: "<!DOCTYPE html>\n<!--\n  Copyright 2015-2018 ForgeRock AS.
+                    All Rights Reserved\n \n  Use of this code requires a commercial
+                    software license with ForgeRock AS.\n  or with one of its affiliates.
+                    All use shall be exclusively subject\n  to such license between
+                    the licensee and ForgeRock AS.\n-->\n<html lang=\"en\">\n    <head>\n
+                    \       <meta charset=\"utf-8\">\n        <meta http-equiv=\"X-UA-Compatible\"
+                    content=\"IE=edge\">\n        <meta name=\"viewport\" content=\"width=device-width,
+                    initial-scale=1\">\n        <meta name=\"description\" content=\"OAuth2
+                    Authorization\">\n        <title>OAuth2 Authorization Server</title>\n
+                    \   </head>\n    <body style=\"display:none\">\n        <div id=\"wrapper\">Loading...</div>\n
+                    \       <footer id=\"footer\" class=\"footer\"></footer>\n        <script
+                    type=\"text/javascript\">\n  pageData = {\n      locale: \"en_GB\",\n
+                    \     baseUrl : \"http://openam.example.com:8080/openam/XUI/\",\n
+                    \     realm : \"\\//XUI\",\n      done: true\n  };\n</script>\n
+                    \       <script src=\"http://openam.example.com:8080/openam/XUI/main-device.js\"></script>\n
+                    \   </body>\n</html>"
+    parameters:
+    - name: realm
+      in: path
+      required: true
+      schema:
+        type: string
+  "/oauth2{realm}/token/revoke":
+    post:
+      tags:
+      - OAuth 2.0 Flows
+      - Refresh Token Flow
+      summary: 'Step 5: [User] Revoke the Refresh Token'
+      description: 'Revoke the refresh token created in the previous call. Revoking
+        a refresh token also revokes any other associated tokens that were issued
+        with the same authorization grant. '
+      operationId: step5UserRevokeTheRefreshToken
+      parameters:
+      - name: "{{cookiename}}"
+        in: header
+        schema:
+          type: string
+          example: "{{demoSSOToken}}"
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                client_id:
+                  type: string
+                  example: "{{postmanConfidentialClientId}}"
+                client_secret:
+                  type: string
+                  example: "{{postmanClientSecret}}"
+                token:
+                  type: string
+                  example: "{{refresh_token}}"
+            examples:
+              'Step 5: [User] Revoke the Refresh Token':
+                value:
+                  client_id: "{{postmanConfidentialClientId}}"
+                  client_secret: "{{postmanClientSecret}}"
+                  token: "{{refresh_token}}"
+      responses:
+        '200':
+          description: Example - Empty response when revoking a token.
+          headers:
+            Content-Length:
+              schema:
+                type: string
+                example: '2'
+            Date:
+              schema:
+                type: string
+                example: Thu, 13 Aug 2020 12:22:07 GMT
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            X-Frame-Options:
+              schema:
+                type: string
+                example: SAMEORIGIN
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                Example - Empty response when revoking a token.:
+                  value: {}
+    parameters:
+    - name: realm
+      in: path
+      required: true
+      schema:
+        type: string
+  "/monitoring/logs/sources":
+    get:
+      tags:
+      - Auditing/Monitoring
+      - Auditing
+      summary: 'Step 1: [API Keys] Get Audit Log Sources'
+      description: Get log sources
+      operationId: step1ApiKeysGetAuditLogSources
+      parameters:
+      - name: x-api-key
+        in: header
+        schema:
+          type: string
+          example: "{{logApiKey}}"
+      - name: x-api-secret
+        in: header
+        schema:
+          type: string
+          example: "{{logApiSecret}}"
+      responses:
+        '200':
+          description: List of log sources
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pagedResultsCookie:
+                    type: string
+                    example: "<string>"
+                  remainingPagedResults:
+                    type: string
+                    example: "<integer>"
+                  result:
+                    type: array
+                    items:
+                      type: string
+                      example: "<string>"
+                    example:
+                    - "<string>"
+                    - "<string>"
+                  resultCount:
+                    type: string
+                    example: "<integer>"
+                  totalPagedResults:
+                    type: string
+                    example: "<integer>"
+                  totalPagedResultsPolicy:
+                    type: string
+                    example: "<string>"
+              examples:
+                List of log sources:
+                  value:
+                    pagedResultsCookie: "<string>"
+                    remainingPagedResults: "<integer>"
+                    result:
+                    - "<string>"
+                    - "<string>"
+                    resultCount: "<integer>"
+                    totalPagedResults: "<integer>"
+                    totalPagedResultsPolicy: "<string>"
+      security:
+      - {}
+  "/monitoring/logs":
+    get:
+      tags:
+      - Auditing/Monitoring
+      - Auditing
+      summary: 'Step 2: [API Keys] Get Audit Logs for a Source'
+      description: Get log events
+      operationId: step2ApiKeysGetAuditLogsForASource
+      parameters:
+      - name: source
+        in: query
+        schema:
+          type: string
+          example: "{{auditSource}}"
+      - name: _pageSize
+        in: query
+        schema:
+          type: string
+          example: '10'
+      - name: _prettyPrint
+        in: query
+        schema:
+          type: string
+          example: 'true'
+      - name: x-api-key
+        in: header
+        schema:
+          type: string
+          example: "{{logApiKey}}"
+      - name: x-api-secret
+        in: header
+        schema:
+          type: string
+          example: "{{logApiSecret}}"
+      - name: transactionId
+        in: query
+        schema:
+          type: string
+          example: "{{lastForgeRockTransactionId}}"
+      responses:
+        '200':
+          description: List of log events / List of log events
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pagedResultsCookie:
+                    type: string
+                    example: "<string>"
+                  remainingPagedResults:
+                    type: string
+                    example: "<integer>"
+                  result:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        payload:
+                          type: string
+                          example: "<object>"
+                        timestamp:
+                          type: string
+                          example: "<dateTime>"
+                        type:
+                          type: string
+                          example: "<string>"
+                    example:
+                    - payload: "<object>"
+                      timestamp: "<dateTime>"
+                      type: "<string>"
+                    - payload: "<object>"
+                      timestamp: "<dateTime>"
+                      type: "<string>"
+                  resultCount:
+                    type: string
+                    example: "<integer>"
+                  totalPagedResults:
+                    type: string
+                    example: "<integer>"
+                  totalPagedResultsPolicy:
+                    type: string
+                    example: "<string>"
+              examples:
+                List of log events:
+                  value:
+                    pagedResultsCookie: "<string>"
+                    remainingPagedResults: "<integer>"
+                    result:
+                    - payload: "<object>"
+                      timestamp: "<dateTime>"
+                      type: "<string>"
+                    - payload: "<object>"
+                      timestamp: "<dateTime>"
+                      type: "<string>"
+                    resultCount: "<integer>"
+                    totalPagedResults: "<integer>"
+                    totalPagedResultsPolicy: "<string>"
+      security:
+      - {}
+  "/monitoring/logs/tail":
+    get:
+      tags:
+      - Auditing/Monitoring
+      - Auditing
+      summary: 'Step 3: [API Keys] Tail the Audit Logs for a Source'
+      description: Tail log events
+      operationId: step3ApiKeysTailTheAuditLogsForASource
+      parameters:
+      - name: source
+        in: query
+        schema:
+          type: string
+          example: "{{auditSource}}"
+      - name: _prettyPrint
+        in: query
+        schema:
+          type: string
+          example: 'true'
+      - name: x-api-key
+        in: header
+        schema:
+          type: string
+          example: "{{logApiKey}}"
+      - name: x-api-secret
+        in: header
+        schema:
+          type: string
+          example: "{{logApiSecret}}"
+      - name: _pagedResultsCookie
+        in: query
+        schema:
+          type: string
+          example: "{{pagedResultsCookie}}"
+      responses:
+        '200':
+          description: List of log events / List of log events
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pagedResultsCookie:
+                    type: string
+                    example: "<string>"
+                  remainingPagedResults:
+                    type: string
+                    example: "<integer>"
+                  result:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        payload:
+                          type: string
+                          example: "<object>"
+                        timestamp:
+                          type: string
+                          example: "<dateTime>"
+                        type:
+                          type: string
+                          example: "<string>"
+                    example:
+                    - payload: "<object>"
+                      timestamp: "<dateTime>"
+                      type: "<string>"
+                    - payload: "<object>"
+                      timestamp: "<dateTime>"
+                      type: "<string>"
+                  resultCount:
+                    type: string
+                    example: "<integer>"
+                  totalPagedResults:
+                    type: string
+                    example: "<integer>"
+                  totalPagedResultsPolicy:
+                    type: string
+                    example: "<string>"
+              examples:
+                List of log events:
+                  value:
+                    pagedResultsCookie: "<string>"
+                    remainingPagedResults: "<integer>"
+                    result:
+                    - payload: "<object>"
+                      timestamp: "<dateTime>"
+                      type: "<string>"
+                    - payload: "<object>"
+                      timestamp: "<dateTime>"
+                      type: "<string>"
+                    resultCount: "<integer>"
+                    totalPagedResults: "<integer>"
+                    totalPagedResultsPolicy: "<string>"
+      security:
+      - {}
+  "/monitoring/health":
+    get:
+      tags:
+      - Auditing/Monitoring
+      - Health
+      summary: Check Health
+      description: Is the Advanced Identity Cloud "alive"?
+      operationId: checkHealth
+      responses:
+        '200':
+          description: Prometheus metrics for all AM pods
+          content:
+            text/plain:
+              examples:
+                Prometheus metrics for all AM pods:
+                  value: |-
+                    # HELP am_cts_task_queue_size number of operations waiting in a CTS queue
+                    # TYPE am_cts_task_queue_size gauge
+                    am_cts_task_queue_size{kubernetes_pod_name="am-568cc4fbb6-cjnpg",} 0.0
+      security:
+      - {}
+  "/monitoring/prometheus/am":
+    get:
+      tags:
+      - Auditing/Monitoring
+      - Monitoring
+      summary: "[API Keys] Get Prometheus Metrics (AM)"
+      description: AM prometheus metrics
+      operationId: apiKeysGetPrometheusMetricsAm
+      parameters:
+      - name: x-api-key
+        in: header
+        schema:
+          type: string
+          example: "{{logApiKey}}"
+      - name: x-api-secret
+        in: header
+        schema:
+          type: string
+          example: "{{logApiSecret}}"
+      responses:
+        '200':
+          description: Prometheus metrics for all AM pods
+          content:
+            text/plain:
+              examples:
+                Prometheus metrics for all AM pods:
+                  value: |-
+                    # HELP am_cts_task_queue_size number of operations waiting in a CTS queue
+                    # TYPE am_cts_task_queue_size gauge
+                    am_cts_task_queue_size{kubernetes_pod_name="am-568cc4fbb6-cjnpg",} 0.0
+      security:
+      - {}
+  "/monitoring/prometheus/idm":
+    get:
+      tags:
+      - Auditing/Monitoring
+      - Monitoring
+      summary: "[API Keys] Get Prometheus Metrics (IDM)"
+      description: AM prometheus metrics
+      operationId: apiKeysGetPrometheusMetricsIdm
+      parameters:
+      - name: x-api-key
+        in: header
+        schema:
+          type: string
+          example: "{{logApiKey}}"
+      - name: x-api-secret
+        in: header
+        schema:
+          type: string
+          example: "{{logApiSecret}}"
+      responses:
+        '200':
+          description: Prometheus metrics for all AM pods
+          content:
+            text/plain:
+              examples:
+                Prometheus metrics for all AM pods:
+                  value: |-
+                    # HELP am_cts_task_queue_size number of operations waiting in a CTS queue
+                    # TYPE am_cts_task_queue_size gauge
+                    am_cts_task_queue_size{kubernetes_pod_name="am-568cc4fbb6-cjnpg",} 0.0
+      security:
+      - {}
+  "/.well-known/assetlinks.json":
+    get:
+      tags:
+      - Well Known
+      - Assetlinks
+      summary: 'Step 2: Read assetlinks.json'
+      description: 'Step 2: Read assetlinks.json'
+      operationId: step2ReadAssetlinksJson
+      responses:
+        '200':
+          description: ''
+      security:
+      - {}
+    put:
+      tags:
+      - Well Known
+      - Assetlinks
+      summary: 'Step 1: [fr:idm:*] Create or update assetlinks.json'
+      description: 'Step 1: [fr:idm:*] Create or update assetlinks.json'
+      operationId: step1FrIdmCreateOrUpdateAssetlinksJson
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  relation:
+                    type: array
+                    items:
+                      type: string
+                      example: delegate_permission/common.handle_all_urls
+                    example:
+                    - delegate_permission/common.handle_all_urls
+                    - delegate_permission/common.get_login_creds
+                  target:
+                    type: object
+                    properties:
+                      namespace:
+                        type: string
+                        example: web
+                      site:
+                        type: string
+                        example: https://id.mycompany.com
+              example:
+              - relation:
+                - delegate_permission/common.handle_all_urls
+                - delegate_permission/common.get_login_creds
+                target:
+                  namespace: web
+                  site: https://id.mycompany.com
+            examples:
+              'Step 1: [fr:idm:*] Create or update assetlinks.json':
+                value:
+                - relation:
+                  - delegate_permission/common.handle_all_urls
+                  - delegate_permission/common.get_login_creds
+                  target:
+                    namespace: web
+                    site: https://id.mycompany.com
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearerAuth: []
+    delete:
+      tags:
+      - Well Known
+      - Assetlinks
+      summary: 'Step 3: [fr:idm:*] Delete assetlinks.json'
+      description: 'Step 3: [fr:idm:*] Delete assetlinks.json'
+      operationId: step3FrIdmDeleteAssetlinksJson
+      requestBody:
+        content:
+          application/json:
+            examples:
+              'Step 3: [fr:idm:*] Delete assetlinks.json':
+                value: ''
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearerAuth: []
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    bearerAuth:
+      type: http
+      scheme: bearer
+tags:
+- name: Managed Identities Copy
+  description: "User objects that are stored in the Advanced Identity Cloud are referred
+    to as managed identities.\n\nYou can add, change, and delete managed users by
+    using the platform UI, or over the REST interface by using these endpoints.\n\nAll
+    of the calls in this section require administrative access. The access token is
+    provided as a bearer token in the headers of each request.\n\n> Note:\n>\n> Some
+    of the examples in this collection use client-assigned IDs (such as bjensen and
+    scarter) when creating objects because it makes the examples easier to read. \n>
+    \n> In the Server assigned IDs section they are created with  IDs such as 55ef0a75-f261-47e9-a72b-f5c61c32d339.
+    \n> \n>  Generally, immutable server-assigned UUIDs are used in production environments."
+- name: Server-assigned ID
+  description: In this section, the Advanced Identity Cloud assigns the ID to your
+    identites, ensuring uniqueness.
+- name: Client-assigned ID
+- name: Prerequisites
+  description: |-
+    This Postman Collection requires a number of prerequisites in order to function.
+
+    Ensure you have completed these steps at least once for each new Advanced Identity Cloud instance you connect to with the collection.
+- name: User Self-service
+  description: "Advanced Identity Cloud provides user self-service features that lets
+    your customers self-register to your web site, securely reset forgotten passwords,
+    and retrieve their usernames.\n\nThese user self-service capabilities greatly
+    reduce help desk costs and offers a rich online experience that strengthens customer
+    loyalty. "
+- name: Registration
+  description: 'Let non-authenticated users register to your site on their own. You
+    can add additional security features like email verification, knowledge-based
+    authentication (KBA) security questions, Google reCAPTCHA, and custom plugins
+    to add to your User Self-Registration process. '
+- name: Forgotten Username
+  description: 'Lets users retrieve their forgotten usernames. If security questions
+    are enabled, users must also correctly answer their pre-configured security questions
+    before retrieving their usernames. '
+- name: Reset Password
+  description: Lets registered users already in your system reset their passwords.
+    The default password policy is set in the underlying directory server and requires
+    a minimum password length of eight characters by default. If security questions
+    are enabled, users must also correctly answer their pre-configured security questions
+    before resetting their passwords.
+- name: Intelligent Access
+  description: "The `/json/authenticate` endpoint supports callback mechanisms to
+    perform complex authentication journeys. Whenever AM needs to return or request
+    information, it will return a JSON object with the authentication step, the authentication
+    identifier, and the related callbacks.\n\nThe following types of callbacks are
+    available:\n\n- Read-only callbacks. AM uses read-only callbacks to provide information
+    to the user, such as text messages or the amount of time that the user needs to
+    wait before continuing their authentication journey.\n- Interactive callbacks.
+    AM uses interactive callbacks ask the user for information. For example, to request
+    their user name and password, or to request that the user chooses between different
+    options.\n- Backchannel callbacks. AM uses backchannel callbacks when it needs
+    to access additional information from the user's request. For example, when it
+    requires a particular header or a certificate.\n    \n\nRead-only and interactive
+    callbacks have an array of output elements suitable for displaying to the end
+    user. The JSON returned in interactive callbacks also contains an array of input
+    elements, which must be completed and returned to AM."
+- name: Identity Profiles
+  description: |-
+    Users in the Advanced Identity Cloud have a record in the system containing various pieces of information relevant to them.
+
+    We call these records "profiles", and they can represent information such as the devices they use to authenticate, or the OAuth 2.0 clients they have given consent to use their data.
+- name: Authenticate as "Postman Demo User"
+- name: Authorized OAuth 2.0 Clients
+  description: |-
+    Many of the OAuth 2.0/OpenID Connect flows require the user to explicitly agree to provide the client with access to their resources.
+
+    Manage the users' OAuth 2.0 clients using these endpoints.
+- name: Devices
+  description: |-
+    Multi-factor authentication requires your users to register a device, which is used as an additional factor.
+
+    Query and manage those devices with these endpoints.
+- name: Trusted Device Profiles
+- name: OATH
+- name: Push
+- name: WebAuthn
+- name: OAuth 2.0 Flows
+  description: "This section describes the OAuth 2.0 flows that the Advanced Identity
+    Cloud supports, and also provides the information required to implement them.
+    \n\nYou should decide which flow is best for your environment based on the application
+    that will be the OAuth 2.0 client. "
+- name: Authorization Code Grant
+  description: "The Authorization Code grant is a two-step interactive process used
+    when a client, for example, a Java application running on a server, requires access
+    to protected resources.\n\nThe Authorization Code grant is the most secure of
+    all the OAuth 2.0 grants for the following reasons:\n\n\tIt is a two-step process:
+    the user must authenticate and authorize the client to see the resources and the
+    authorization server must validate the code again before issuing the access token.\n\t\n\tThe
+    authorization server delivers the access token directly to the client, usually
+    over HTTPS. The client secret is never exposed publicly, which protects confidential
+    clients."
+- name: Authorization Code Grant with PKCE
+  description: |
+    The Authorization Code Grant, when combined with the PKCE standard (RFC 7636), is used when a client, usually a mobile or a JavaScript application, requires access to protected resources.
+
+    The flow is similar to the regular Authorization Code Grant type, but the client must generate a code that will be part of the communication between the client and the authorization server. This code mitigates against interception attacks performed by malicious users.
+
+    Since communication between the client and the authorization server is not secure, clients are usually public so their secrets do not get compromised. Also, browser-based clients making OAuth 2.0 requests to different domains must implement Cross-Origin Resource Sharing (CORS) calls to access OAuth 2.0 resources in different domains.
+- name: Implicit Grant
+  description: |-
+    The Implicit grant is designed for public clients that run inside the resource owner's user-agent, for example, JavaScript applications.
+
+    Since applications running in the user-agent are considered less trusted than applications running in servers, the authorization server will never issue refresh tokens in this flow. There is a security impact of cross-site scripting (XSS) attacks that could leak the access token to other systems, and implement Cross-Origin Resource Sharing (CORS) to make OAuth 2.0 requests to different domains.
+
+    Due to the security implications of this flow, it is recommended to use the Authorization Code grant with PKCE flow whenever possible.
+- name: Resource Owner Password Credentials Grant
+  description: |-
+    The Resource Owner Password Credentials (ROPC) grant flow allows the client to use the resource owner's user name and password to get an access token.
+
+    Since the resource owner shares their credentials with the client, this flow is deemed the most insecure of the OAuth 2.0 flows. The resource owner's credentials can potentially be leaked or abused by the client application, and the resource owner has no control over the authorization process.
+
+    You should implement the ROPC grant flow only if the resource owner has a trust relationship with the client (such as the device operating system, or a highly privileged application).
+- name: Client Credentials Grant
+  description: |-
+    The Client Credentials grant is used when a client is also the resource owner and is accessing its own data instead of acting in behalf of a user. For example, an application that needs access to a protected resource to retrieve its own data to perform a task, or update its configuration, would use the Client Credentials grant to acquire an access token.
+
+    The Client Credentials Grant flow supports confidential clients only.
+- name: Device Flow
+  description: |-
+    The Device Flow is designed for client devices that have limited user interfaces, such as a set-top box, streaming radio, or a server process running on a headless operating system.
+
+    Rather than logging in by using the client device itself, you can authorize the client to access protected resources on your behalf by logging in with a different user agent, such as an Internet browser or smartphone, and entering a code displayed on the client device.
+- name: Device Flow with PKCE
+  description: |-
+    The Device Flow is designed for client devices that have limited user interfaces, such as a set-top box. Since the devices are usually public clients and the device code can be intercepted by malicious users, you can combine the Device Flow with the PKCE standard (RFC 7636) to mitigate against interception attacks if the devices allow it.
+
+    This flow is beyond the PKCE and the Device Flow specs, since the Device Flow spec is still a draft and it is not officially recognized by the PKCE standard.
+- name: Refresh Token Flow
+  description: 'Refresh tokens are a type of token that can be used to obtain a new
+    access token that may have identical or narrower scopes than the original. Refresh
+    tokens are long-lived by default, and AM allows you to configure the lifetime
+    of the tokens in the OAuth 2.0 Provider settings, or in each client. By default,
+    the configuration of the OAuth 2.0 Provider is used. '
+- name: Auditing/Monitoring
+  description: "The Advanced Identity Cloud supports a comprehensive Audit Logging
+    Service that captures key auditing events, critical for system security, troubleshooting,
+    and regulatory compliance.\n\nAudit logs gather operational information about
+    events occurring within a deployment to track processes and security data, such
+    as authentication mechanisms, system access, user and administrator activity,
+    error messages, and configuration changes. \n\nThe ID Cloud also offer advanced
+    monitoring services that will let you monitor metrics, such as authentication
+    and authorization outcomes, token-related operations, CTS queues, or JVM usage."
+- name: Auditing
+  description: 'The Audit Logging Service uses a structured message format that adheres
+    to a consistent log structure common across the ForgeRock Identity Platform. This
+    common structure allows correlation between log messages of the different components
+    of the Platform once the transaction IDs are trusted by enabling the ForgerRock
+    trust transaction header system property. '
+- name: Health
+  description: Check the health status of your Advanced Identity Cloud.
+- name: Monitoring
+  description: Prometheus is third-party software used for gathering and processing
+    monitoring data. Advanced Identity Cloud exposes the endpoints in this section,
+    which Prometheus uses to gather metrics.
+- name: Session Management
+  description: |-
+    When a user authenticates to the Advanced Identity Cloud, they are issues with a session token.
+
+    You can obtain information about a users' session, and terminate it, which represents the user logging out of your service.
+- name: Well Known
+- name: Assetlinks
